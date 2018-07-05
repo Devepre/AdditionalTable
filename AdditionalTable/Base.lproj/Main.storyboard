@@ -98,9 +98,18 @@
                                 <rect key="frame" x="50" y="214" width="275" height="303"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkY-8h-593">
+                                <rect key="frame" x="154" y="535" width="66" height="30"/>
+                                <state key="normal" title="Awesome"/>
+                                <connections>
+                                    <action selector="awesomeButtonAction:" destination="kMN-VP-NT5" eventType="touchUpInside" id="3jA-c7-vFG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hkY-8h-593" firstAttribute="centerX" secondItem="FJJ-HU-vlV" secondAttribute="centerX" id="2ui-cH-B5v"/>
+                            <constraint firstItem="hkY-8h-593" firstAttribute="top" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="18" id="CMR-KB-Dhe"/>
                             <constraint firstItem="rDv-fz-taK" firstAttribute="bottom" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="150" id="DjK-dB-h9e"/>
                             <constraint firstItem="FJJ-HU-vlV" firstAttribute="leading" secondItem="rDv-fz-taK" secondAttribute="leading" constant="50" id="Jjs-k3-7Ql"/>
                             <constraint firstItem="FJJ-HU-vlV" firstAttribute="top" secondItem="rDv-fz-taK" secondAttribute="top" constant="150" id="dBN-jS-fYL"/>

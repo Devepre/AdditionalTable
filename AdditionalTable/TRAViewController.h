@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Level;
 
 @interface TRAViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) Level *rootLevel;
+
+- (IBAction)awesomeButtonAction:(UIButton *)sender;
 
 @end

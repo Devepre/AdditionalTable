@@ -27,8 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    Level *rootLevel =  [self createLevelHierarchy];
-    self.selfNavigableTableProxy = [[SelfNavigableTableViewProxy alloc] initWithDatasource:rootLevel];
+    self.rootLevel = [self createLevelHierarchy];
+    self.selfNavigableTableProxy = [[SelfNavigableTableViewProxy alloc] initWithDatasource:self.rootLevel];
     
     self.tableView.delegate = self.selfNavigableTableProxy;
     self.tableView.dataSource = self.selfNavigableTableProxy;
@@ -102,6 +102,11 @@
                                    addOptionEnabled:NO];
     
     return levelRoot;
+}
+
+
+- (IBAction)awesomeButtonAction:(UIButton *)sender {
+    NSLog(@"%@", self.rootLevel);
 }
 
 
