@@ -22,6 +22,8 @@
 		472B065820ED1898004D09CA /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B065720ED1898004D09CA /* Client.m */; };
 		472B065B20ED1B08004D09CA /* EMail.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B065A20ED1B08004D09CA /* EMail.m */; };
 		47D78D9F20ED251700C64084 /* Element.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78D9E20ED251700C64084 /* Element.m */; };
+		47D78DA220EE1D0500C64084 /* SelfNavigableTableViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78DA120EE1D0500C64084 /* SelfNavigableTableViewProxy.m */; };
+		47D78DA520EE1F9C00C64084 /* TRAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78DA420EE1F9C00C64084 /* TRAViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,10 @@
 		472B065A20ED1B08004D09CA /* EMail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMail.m; sourceTree = "<group>"; };
 		47D78D9D20ED251700C64084 /* Element.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Element.h; sourceTree = "<group>"; };
 		47D78D9E20ED251700C64084 /* Element.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Element.m; sourceTree = "<group>"; };
+		47D78DA020EE1D0500C64084 /* SelfNavigableTableViewProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfNavigableTableViewProxy.h; sourceTree = "<group>"; };
+		47D78DA120EE1D0500C64084 /* SelfNavigableTableViewProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelfNavigableTableViewProxy.m; sourceTree = "<group>"; };
+		47D78DA320EE1F9C00C64084 /* TRAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRAViewController.h; sourceTree = "<group>"; };
+		47D78DA420EE1F9C00C64084 /* TRAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRAViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,10 @@
 				47D78D9C20ED24E700C64084 /* Models */,
 				478B780820ED24A3007EBD4B /* Custom Views */,
 				472B065C20ED23FC004D09CA /* BusinessModels */,
+				47D78DA020EE1D0500C64084 /* SelfNavigableTableViewProxy.h */,
+				47D78DA120EE1D0500C64084 /* SelfNavigableTableViewProxy.m */,
+				47D78DA320EE1F9C00C64084 /* TRAViewController.h */,
+				47D78DA420EE1F9C00C64084 /* TRAViewController.m */,
 			);
 			path = AdditionalTable;
 			sourceTree = "<group>";
@@ -214,6 +224,8 @@
 				472B064120ECFA5C004D09CA /* MagicViewController.m in Sources */,
 				47D78D9F20ED251700C64084 /* Element.m in Sources */,
 				472B065820ED1898004D09CA /* Client.m in Sources */,
+				47D78DA520EE1F9C00C64084 /* TRAViewController.m in Sources */,
+				47D78DA220EE1D0500C64084 /* SelfNavigableTableViewProxy.m in Sources */,
 				472B062E20ECF750004D09CA /* ViewController.m in Sources */,
 				472B063920ECF752004D09CA /* main.m in Sources */,
 				472B064520ECFBBB004D09CA /* LevelTableViewCell.m in Sources */,

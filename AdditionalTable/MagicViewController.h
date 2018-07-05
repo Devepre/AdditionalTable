@@ -10,9 +10,9 @@
 #import "TitleProvider.h"
 #import "Level.h"
 
-@interface MagicViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MagicViewController : UIViewController
 
-//@property (strong, nonatomic) NSMutableArray<id<TitleProvider>> *datasourceArray;
 @property (strong, nonatomic) Level *datasourceLevel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

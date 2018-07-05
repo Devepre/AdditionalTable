@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSr-wO-7H8">
-                                <rect key="frame" x="166.5" y="318" width="42" height="30"/>
+                                <rect key="frame" x="167" y="318" width="42" height="30"/>
                                 <state key="normal" title="Magic">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -27,10 +27,21 @@
                                     <segue destination="yML-Ma-NLz" kind="show" identifier="showTable" id="q3D-kU-HCf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fX-Lm-xu1">
+                                <rect key="frame" x="138" y="358" width="99" height="30"/>
+                                <state key="normal" title="Voodoo Magic">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kMN-VP-NT5" kind="show" id="Kpy-sg-OQ7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.11762753870000001" green="0.11765936759999999" blue="0.1176273003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="OSr-wO-7H8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="V8O-QO-HRw"/>
+                            <constraint firstItem="8fX-Lm-xu1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rKp-If-4at"/>
+                            <constraint firstItem="8fX-Lm-xu1" firstAttribute="top" secondItem="OSr-wO-7H8" secondAttribute="bottom" constant="10" id="sIA-EC-amO"/>
                             <constraint firstItem="OSr-wO-7H8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tL4-6V-mZo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -44,7 +55,7 @@
         <!--Magic View Controller-->
         <scene sceneID="z8Y-oV-rP9">
             <objects>
-                <viewController storyboardIdentifier="MagicViewController" id="yML-Ma-NLz" customClass="MagicViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MagicViewController" automaticallyAdjustsScrollViewInsets="NO" id="yML-Ma-NLz" customClass="MagicViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5C8-Qa-Mbx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,10 +78,43 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SAY-UQ-KVd"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ZTn-QO-BfW" id="SP1-1u-lFp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENN-fT-W40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810" y="118"/>
+            <point key="canvasLocation" x="1808.8" y="117.39130434782609"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vIz-L3-OqO">
+            <objects>
+                <viewController id="kMN-VP-NT5" customClass="TRAViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IDZ-5N-S5K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJJ-HU-vlV">
+                                <rect key="frame" x="50" y="214" width="275" height="303"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rDv-fz-taK" firstAttribute="bottom" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="150" id="DjK-dB-h9e"/>
+                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="leading" secondItem="rDv-fz-taK" secondAttribute="leading" constant="50" id="Jjs-k3-7Ql"/>
+                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="top" secondItem="rDv-fz-taK" secondAttribute="top" constant="150" id="dBN-jS-fYL"/>
+                            <constraint firstItem="rDv-fz-taK" firstAttribute="trailing" secondItem="FJJ-HU-vlV" secondAttribute="trailing" constant="50" id="gOo-7j-y2N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rDv-fz-taK"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="FJJ-HU-vlV" id="MhT-uS-sCo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSJ-LY-Tyr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1057" y="892"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BhI-Sn-ztG">
