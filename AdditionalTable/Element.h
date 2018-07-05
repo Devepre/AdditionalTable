@@ -15,6 +15,7 @@
 @property (assign, nonatomic, getter=isChecked) BOOL checked;
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithTitle:(NSString *)title checked:(BOOL)checked NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithTitle:(NSString *)title
+                      checked:(BOOL)checked NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -33,7 +33,8 @@
 
 
 - (NSString *)description {
-    return self.title;
+    NSString *result = [NSString stringWithFormat:(@"%@ -> %@"), self.title, self.data];
+    return result;
 }
 
 

@@ -31,7 +31,8 @@
 
 
 - (NSString *)description {
-    return self.title;
+    NSString *result = [NSString stringWithFormat:(@"%@ -> %@"), self.title, self.checked ? @"YES" : @"NO"];
+    return result;
 }
 
 

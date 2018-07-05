@@ -16,6 +16,8 @@
 @property (assign, nonatomic, getter=isAddOptionEnabled) BOOL addOpitonEnabled;
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithTitle:(NSString *)title data:(NSArray<id<TitleProvider>> *)data addOptionEnabled:(BOOL)addOptionEnabled NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithTitle:(NSString *)title
+                         data:(NSArray<id<TitleProvider>> *)data
+             addOptionEnabled:(BOOL)addOptionEnabled NS_DESIGNATED_INITIALIZER;
 
 @end

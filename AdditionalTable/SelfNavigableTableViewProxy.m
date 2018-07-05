@@ -55,6 +55,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Getting correct cell identifier and nib name
     NSString *cellIdentifier = nil;
     NSString *nibName = nil;
     if ([[self.datasourceLevel.data firstObject] isKindOfClass:Level.class]) {
@@ -64,15 +65,23 @@
         cellIdentifier = kElementCellIdentifier;
         nibName = kElementCellNibName;
     }
-    
+
+    // Creating cell
     LevelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         [tableView registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
-    
+
+    // Populating cell with data according to the Protocol
     id<TitleProvider> currentObject = [self.datasourceLevel.data objectAtIndex:indexPath.row];
     cell.textLabel.text = [currentObject title];
+    
+    // Setting checkmarks according to the model state
+    if ([cellIdentifier isEqualToString:kElementCellIdentifier]) {
+        Element *currentElement = [self.datasourceLevel.data objectAtIndex:indexPath.row];
+        cell.accessoryType = currentElement.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
@@ -86,7 +95,9 @@
     if ([selectedCell.reuseIdentifier isEqualToString:kLevelCellIdentifier]) {
         [self pushTableViewForRowAtIndexPath:indexPath];
     } else if ([selectedCell.reuseIdentifier isEqualToString:kElementCellIdentifier]) {
-        [self markSelectedCell:selectedCell forIndexPath:indexPath tableView:tableView];
+        [self markSelectedCell:selectedCell
+                  forIndexPath:indexPath
+                     tableView:tableView];
     }
     
 }
@@ -99,14 +110,12 @@
                tableView:(UITableView * _Nonnull)tableView {
     NSLog(@"%s", __func__);
     
-    BOOL isSelected = (selectedCell.accessoryType == UITableViewCellAccessoryCheckmark);
-    if (isSelected) {
-        selectedCell.accessoryType = UITableViewCellAccessoryNone;
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    } else {
-        selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
+    BOOL isCellSelected = (selectedCell.accessoryType == UITableViewCellAccessoryCheckmark);
+    selectedCell.accessoryType = isCellSelected ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Element *currentObject = [self.datasourceLevel.data objectAtIndex:indexPath.row];
+    currentObject.checked = !isCellSelected;
 }
 
 
