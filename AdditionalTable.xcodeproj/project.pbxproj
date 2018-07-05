@@ -94,20 +94,18 @@
 				472B062A20ECF750004D09CA /* AppDelegate.m */,
 				472B062C20ECF750004D09CA /* ViewController.h */,
 				472B062D20ECF750004D09CA /* ViewController.m */,
+				472B063F20ECFA5C004D09CA /* MagicViewController.h */,
+				472B064020ECFA5C004D09CA /* MagicViewController.m */,
+				47D78DA320EE1F9C00C64084 /* TRAViewController.h */,
+				47D78DA420EE1F9C00C64084 /* TRAViewController.m */,
 				472B062F20ECF750004D09CA /* Main.storyboard */,
 				472B063220ECF752004D09CA /* Assets.xcassets */,
 				472B063420ECF752004D09CA /* LaunchScreen.storyboard */,
 				472B063720ECF752004D09CA /* Info.plist */,
 				472B063820ECF752004D09CA /* main.m */,
-				472B063F20ECFA5C004D09CA /* MagicViewController.h */,
-				472B064020ECFA5C004D09CA /* MagicViewController.m */,
 				47D78D9C20ED24E700C64084 /* Models */,
 				478B780820ED24A3007EBD4B /* Custom Views */,
 				472B065C20ED23FC004D09CA /* BusinessModels */,
-				47D78DA020EE1D0500C64084 /* SelfNavigableTableViewProxy.h */,
-				47D78DA120EE1D0500C64084 /* SelfNavigableTableViewProxy.m */,
-				47D78DA320EE1F9C00C64084 /* TRAViewController.h */,
-				47D78DA420EE1F9C00C64084 /* TRAViewController.m */,
 			);
 			path = AdditionalTable;
 			sourceTree = "<group>";
@@ -144,6 +142,8 @@
 				472B065420ED1373004D09CA /* Level.m */,
 				47D78D9D20ED251700C64084 /* Element.h */,
 				47D78D9E20ED251700C64084 /* Element.m */,
+				47D78DA020EE1D0500C64084 /* SelfNavigableTableViewProxy.h */,
+				47D78DA120EE1D0500C64084 /* SelfNavigableTableViewProxy.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
