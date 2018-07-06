@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eQP-mF-psH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eQP-mF-psH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSr-wO-7H8">
-                                <rect key="frame" x="167" y="318" width="42" height="30"/>
+                                <rect key="frame" x="166.5" y="318.5" width="42" height="30"/>
                                 <state key="normal" title="Magic">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fX-Lm-xu1">
-                                <rect key="frame" x="138" y="358" width="99" height="30"/>
+                                <rect key="frame" x="138" y="358.5" width="99" height="30"/>
                                 <state key="normal" title="Voodoo Magic">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -94,15 +94,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJJ-HU-vlV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJJ-HU-vlV">
                                 <rect key="frame" x="50" y="214" width="275" height="303"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="F9F-pN-bIK">
+                                    <rect key="frame" x="0.0" y="0.0" width="275" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkY-8h-593">
-                                <rect key="frame" x="154" y="535" width="66" height="30"/>
+                                <rect key="frame" x="154.5" y="535" width="66" height="30"/>
                                 <state key="normal" title="Awesome"/>
                                 <connections>
                                     <action selector="awesomeButtonAction:" destination="kMN-VP-NT5" eventType="touchUpInside" id="3jA-c7-vFG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKj-1Q-yer">
+                                <rect key="frame" x="121" y="573" width="133" height="30"/>
+                                <state key="normal" title="Add From Contacts"/>
+                                <connections>
+                                    <action selector="addFromContacts:" destination="kMN-VP-NT5" eventType="touchUpInside" id="1gz-Ir-9BG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -112,8 +124,10 @@
                             <constraint firstItem="hkY-8h-593" firstAttribute="top" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="18" id="CMR-KB-Dhe"/>
                             <constraint firstItem="rDv-fz-taK" firstAttribute="bottom" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="150" id="DjK-dB-h9e"/>
                             <constraint firstItem="FJJ-HU-vlV" firstAttribute="leading" secondItem="rDv-fz-taK" secondAttribute="leading" constant="50" id="Jjs-k3-7Ql"/>
+                            <constraint firstItem="OKj-1Q-yer" firstAttribute="centerX" secondItem="hkY-8h-593" secondAttribute="centerX" id="QB5-tz-Ja3"/>
                             <constraint firstItem="FJJ-HU-vlV" firstAttribute="top" secondItem="rDv-fz-taK" secondAttribute="top" constant="150" id="dBN-jS-fYL"/>
                             <constraint firstItem="rDv-fz-taK" firstAttribute="trailing" secondItem="FJJ-HU-vlV" secondAttribute="trailing" constant="50" id="gOo-7j-y2N"/>
+                            <constraint firstItem="OKj-1Q-yer" firstAttribute="top" secondItem="hkY-8h-593" secondAttribute="bottom" constant="8" symbolic="YES" id="zBM-ad-MTC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rDv-fz-taK"/>
                     </view>

@@ -8,7 +8,6 @@
 
 #import "TRAViewController.h"
 #import "SelfNavigableTableViewProxy.h"
-
 #import "Client.h"
 #import "EMail.h"
 #import "Element.h"
@@ -32,6 +31,8 @@
     
     self.tableView.delegate = self.selfNavigableTableProxy;
     self.tableView.dataSource = self.selfNavigableTableProxy;
+    
+    self.emailsAddedManually = [[NSMutableArray alloc] init];
 }
 
 
@@ -107,6 +108,32 @@
 
 - (IBAction)awesomeButtonAction:(UIButton *)sender {
     NSLog(@"%@", self.rootLevel);
+    NSLog(@"Contacts are:\n%@", self.emailsAddedManually);
+}
+
+
+- (IBAction)addFromContacts:(UIButton *)sender {
+    CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc] init];
+    contactPicker.displayedPropertyKeys = @[CNContactEmailAddressesKey];
+    contactPicker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
+    
+    // In order to enable selection of contact only if one e-mail addres is present
+    contactPicker.predicateForSelectionOfContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count == 1"];
+    contactPicker.delegate = self;
+    
+    [self presentViewController:contactPicker animated:YES completion:nil];
+}
+
+
+#pragma mark - <CNContactPickerDelegate>
+
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
+    [self.emailsAddedManually addObject:[contact.emailAddresses firstObject].value];
+}
+
+
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
+    [self.emailsAddedManually addObject:contactProperty.value];
 }
 
 
