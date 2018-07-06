@@ -12,12 +12,12 @@
 @interface Level : NSObject<TitleProvider>
 
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSArray<id<TitleProvider>> *data;
+@property (strong, nonatomic) NSMutableArray<id<TitleProvider>> *data;
 @property (assign, nonatomic, getter=isAddOptionEnabled) BOOL addOpitonEnabled;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithTitle:(NSString *)title
-                         data:(NSArray<id<TitleProvider>> *)data
+                         data:(NSMutableArray<id<TitleProvider>> *)data
              addOptionEnabled:(BOOL)addOptionEnabled NS_DESIGNATED_INITIALIZER;
 
 @end

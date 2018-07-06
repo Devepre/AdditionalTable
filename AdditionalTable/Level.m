@@ -12,7 +12,7 @@
 
 
 - (instancetype)initWithTitle:(NSString *)title
-                         data:(NSArray<id<TitleProvider>> *)data
+                         data:(NSMutableArray<id<TitleProvider>> *)data
              addOptionEnabled:(BOOL)addOptionEnabled {
     self = [super init];
     if (self) {

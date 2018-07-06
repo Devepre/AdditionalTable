@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ContactsUI/ContactsUI.h>
+#import <Contacts/Contacts.h>
 #import "TitleProvider.h"
 #import "Level.h"
 
-@interface MagicViewController : UIViewController
+@interface MagicViewController : UIViewController<CNContactPickerDelegate>
 
 @property (strong, nonatomic) Level *datasourceLevel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

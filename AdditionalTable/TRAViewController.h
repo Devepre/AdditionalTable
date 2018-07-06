@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) Level *rootLevel;
+// For internal use only
 @property (strong, nonatomic) NSMutableArray<NSString *> *emailsAddedManually;
 
 - (IBAction)awesomeButtonAction:(UIButton *)sender;

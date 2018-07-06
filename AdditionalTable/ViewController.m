@@ -54,7 +54,7 @@
                                                              checked:_checkedByDefaults];
         // Buildings Level
         Level *level_building = [[Level alloc] initWithTitle:@"Buildings"
-                                                        data:@[element_building_0, element_building_1]
+                                                        data:[@[element_building_0, element_building_1] mutableCopy]
                                             addOptionEnabled:YES];
         
         // Elements for Hospitals
@@ -64,7 +64,7 @@
                                                              checked:_checkedByDefaults];
         // Hospital Level
         Level *level_hospital = [[Level alloc] initWithTitle:@"Hospitals"
-                                                        data:@[element_hospital_0, element_hospital_1]
+                                                        data:[@[element_hospital_0, element_hospital_1] mutableCopy]
                                             addOptionEnabled:YES];
         
         /////////////////////////////
@@ -79,21 +79,21 @@
         
         
         Level *level_department_0 = [[Level alloc] initWithTitle:@"Sub Departments"
-                                                            data:@[element_department_0, element_department_1]
+                                                            data:[@[element_department_0, element_department_1] mutableCopy]
                                                 addOptionEnabled:YES];
         
         Level *level_department_1 = [[Level alloc] initWithTitle:@"Sub Departments"
-                                                            data:@[element_department_1_0, element_department_1_1]
+                                                            data:[@[element_department_1_0, element_department_1_1] mutableCopy]
                                                 addOptionEnabled:YES];
         
         // Department Level
         Level *level_department = [[Level alloc] initWithTitle:@"Departments"
-                                                          data:@[level_department_0, level_department_1]
+                                                          data:[@[level_department_0, level_department_1] mutableCopy]
                                               addOptionEnabled:YES];
         
         
         Level *levelRoot = [[Level alloc] initWithTitle:@"Root Table"
-                                                   data:@[level_building, level_hospital, level_department]
+                                                   data:[@[level_building, level_hospital, level_department] mutableCopy]
                                        addOptionEnabled:NO];
         
         
