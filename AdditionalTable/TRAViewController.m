@@ -27,7 +27,9 @@
     [super viewDidLoad];
     
     self.rootLevel = [self createLevelHierarchy];
-    self.selfNavigableTableProxy = [[SelfNavigableTableViewProxy alloc] initWithDatasource:self.rootLevel];
+    self.selfNavigableTableProxy = [[SelfNavigableTableViewProxy alloc]
+                                    initWithDatasource:self.rootLevel
+                                    forTableView:self.tableView];
     
     self.tableView.delegate = self.selfNavigableTableProxy;
     self.tableView.dataSource = self.selfNavigableTableProxy;
@@ -37,7 +39,7 @@
 
 
 - (Level *)createLevelHierarchy {
-    _checkedByDefaults = YES;
+    _checkedByDefaults = NO;
     
     Client *clientBuilding = [[Client alloc] initWithTitle:@"Building"];
     Client *clientHospital = [[Client alloc] initWithTitle:@"Hospital"];

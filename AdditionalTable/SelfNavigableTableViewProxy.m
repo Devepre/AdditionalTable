@@ -19,15 +19,19 @@
     NSString *kElementCellIdentifier;
 }
 
+@property (weak, nonatomic) UITableView *tableView;
+
 @end
 
 @implementation SelfNavigableTableViewProxy
 
 
-- (instancetype)initWithDatasource:(Level *)datasourceLevel {
+- (instancetype)initWithDatasource:(Level *)datasourceLevel
+                      forTableView:(UITableView *)tableView {
     self = [super init];
     if (self) {
         _datasourceLevel = datasourceLevel;
+        _tableView = tableView;
         [self initDefaults];
     }
     return self;
@@ -133,6 +137,13 @@
     } else {
         NSLog(@"Root view controller should be UINavigationController in order to push new VC instance");
     }
+}
+
+- (void)markAllCellsChecked {
+    for (Element *currentElement in self.datasourceLevel.data) {
+        currentElement.checked = YES;
+    }
+    [self.tableView reloadData];
 }
 
 

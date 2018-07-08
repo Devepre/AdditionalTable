@@ -15,6 +15,7 @@
 @interface MagicViewController ()
 
 @property (strong, nonatomic) SelfNavigableTableViewProxy *selfNavigableTableProxy;
+@property (strong, nonatomic) NSMutableArray<UIBarButtonItem *> *rightBarButtonItems;
 
 @end
 
@@ -24,22 +25,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.selfNavigableTableProxy = [[SelfNavigableTableViewProxy alloc] initWithDatasource:self.datasourceLevel];
+    self.selfNavigableTableProxy = [[SelfNavigableTableViewProxy alloc]
+                                    initWithDatasource:self.datasourceLevel
+                                    forTableView:self.tableView];
     
     self.tableView.delegate = self.selfNavigableTableProxy;
     self.tableView.dataSource = self.selfNavigableTableProxy;
     
-    // Adding new item
+    self.rightBarButtonItems = [[NSMutableArray alloc] init];
+    
+    // Add New Button item
     if (self.datasourceLevel.isAddOptionEnabled) {
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                       initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                       target:self action:@selector(insertNewObject)];
-        self.navigationItem.rightBarButtonItem = addButton;
+        [self.rightBarButtonItems addObject:addButton];
     }
+    
+    // Check All Button item
+    if ([[self.datasourceLevel.data firstObject] isKindOfClass:Element.class]) {
+        UIBarButtonItem *checkAllButton = [[UIBarButtonItem alloc]
+                                           initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                           target:self action:@selector(markAllCellsChecked)];
+        [self.rightBarButtonItems addObject:checkAllButton];
+    }
+    
+    [self.navigationItem setRightBarButtonItems:self.rightBarButtonItems];
 }
 
 
-#pragma mark - Adding From Contacts
+#pragma mark - Additional Methods
 
 - (void)insertNewObject {
     [self addFromContacts];
@@ -58,6 +73,10 @@
     [self presentViewController:contactPicker animated:YES completion:nil];
 }
 
+
+- (void)markAllCellsChecked {
+    [self.selfNavigableTableProxy markAllCellsChecked];
+}
 
 #pragma mark - <CNContactPickerDelegate>
 
