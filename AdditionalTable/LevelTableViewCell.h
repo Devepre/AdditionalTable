@@ -10,6 +10,7 @@
 
 @interface LevelTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mainTextLabel;
+@property (weak, nonatomic) IBOutlet UILabel *additionalInfoTextLabel;
 
 @end

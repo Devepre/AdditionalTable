@@ -79,12 +79,18 @@
 
     // Populating cell with data according to the Protocol
     id<TitleProvider> currentObject = [self.datasourceLevel.data objectAtIndex:indexPath.row];
-    cell.textLabel.text = [currentObject title];
+    cell.mainTextLabel.text = [currentObject title];
     
     // Setting checkmarks according to the model state
     if ([cellIdentifier isEqualToString:kElementCellIdentifier]) {
         Element *currentElement = [self.datasourceLevel.data objectAtIndex:indexPath.row];
         cell.accessoryType = currentElement.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    } else {
+        // Setting counters
+        NSUInteger total = 0;
+        NSUInteger numberOfCheckedElements = [((Level *)[self.datasourceLevel.data objectAtIndex:indexPath.row]) numberOfCheckedElementsWithTotal:&total];
+        NSString *counterString = [NSString stringWithFormat:@"%lu//%lu", (unsigned long)numberOfCheckedElements, (unsigned long)total];
+        cell.additionalInfoTextLabel.text = counterString;
     }
     
     return cell;

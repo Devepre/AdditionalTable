@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,23 +21,34 @@
                 <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAv-BK-sGO">
-                        <rect key="frame" x="16" y="11" width="262" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAv-BK-sGO">
+                        <rect key="frame" x="16" y="11" width="190.5" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.813916774611399" green="0.5763533773636792" blue="0.13592089702057145" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTa-7q-pbH">
+                        <rect key="frame" x="251.5" y="11" width="26.5" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="cAv-BK-sGO" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="hGn-Zs-Go2"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="cAv-BK-sGO" secondAttribute="trailing" id="n5d-dp-ebr"/>
-                    <constraint firstItem="cAv-BK-sGO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="pdC-1o-4ig"/>
-                    <constraint firstItem="cAv-BK-sGO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="qbO-w8-qNf"/>
+                    <constraint firstItem="pTa-7q-pbH" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="YtN-3q-yex"/>
+                    <constraint firstItem="pTa-7q-pbH" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="eAm-eS-UJf"/>
+                    <constraint firstItem="cAv-BK-sGO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="hDG-Js-xVX"/>
+                    <constraint firstItem="pTa-7q-pbH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cAv-BK-sGO" secondAttribute="trailing" id="kWO-gx-c9h"/>
+                    <constraint firstItem="cAv-BK-sGO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="nVu-6G-jZQ"/>
+                    <constraint firstItem="cAv-BK-sGO" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="tCo-o1-TF5"/>
+                    <constraint firstItem="pTa-7q-pbH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="weB-nt-mja"/>
+                    <constraint firstItem="cAv-BK-sGO" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="2/3" id="xZv-5A-rdz"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="textLabel" destination="cAv-BK-sGO" id="tFF-LZ-Xv3"/>
+                <outlet property="additionalInfoTextLabel" destination="pTa-7q-pbH" id="Wz7-0R-bYb"/>
+                <outlet property="mainTextLabel" destination="cAv-BK-sGO" id="tFF-LZ-Xv3"/>
             </connections>
         </tableViewCell>
     </objects>

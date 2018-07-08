@@ -7,6 +7,7 @@
 //
 
 #import "Level.h"
+#import "Element.h"
 
 @implementation Level
 
@@ -34,6 +35,29 @@
 
 - (NSString *)description {
     NSString *result = [NSString stringWithFormat:(@"%@ -> %@"), self.title, self.data];
+    return result;
+}
+
+
+- (NSUInteger)numberOfCheckedElementsWithTotal:(NSUInteger *)total {
+    // There is place for performance improvements
+    // can be computaed only if changes occures
+    // instead of computating each time
+    NSInteger result = 0;
+    
+    for (NSObject *object in self.data) {
+        if ([object isKindOfClass:Level.class]) {
+            result+=[((Level *)object) numberOfCheckedElementsWithTotal:total];
+        } else if ([object isKindOfClass:Element.class]) {
+            if (((Element *)object).checked) {
+                result++;
+            }
+            *total = *total + 1;
+        } else {
+            NSLog(@"Unknown object type received for counting");
+        }
+    }
+    
     return result;
 }
 

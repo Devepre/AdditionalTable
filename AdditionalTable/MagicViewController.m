@@ -54,6 +54,14 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    // Reloading data after pushing VC back from stack
+    // Need to be optimized to execute only if pushed back
+    // but not just created
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - Additional Methods
 
 - (void)insertNewObject {

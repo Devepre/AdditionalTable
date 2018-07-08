@@ -19,5 +19,6 @@
 - (instancetype)initWithTitle:(NSString *)title
                          data:(NSMutableArray<id<TitleProvider>> *)data
              addOptionEnabled:(BOOL)addOptionEnabled NS_DESIGNATED_INITIALIZER;
+- (NSUInteger)numberOfCheckedElementsWithTotal:(NSUInteger *)total;
 
 @end
