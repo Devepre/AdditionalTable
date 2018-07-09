@@ -67,6 +67,43 @@
 }
 
 
+- (BOOL)addItem:(nonnull SKTableSourceItem *)item {
+    BOOL result = YES;
+    if ([self.dataArray containsObject:item]) {
+        result = NO;
+        NSLog(@"Object %@ is already present in %@", item, self);
+    } else {
+        [self.dataArray addObject:item];
+        result = YES;
+    }
+    
+    return result;
+}
+
+#pragma mark - Equality
+
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    }
+    if (!other || ![other isKindOfClass:[self class]]) {
+        return NO;
+    }
+    // Comparting by dataArray and title properties
+    if ([self.dataArray isEqual:((SKLevel *)other).dataArray] &&
+        [self.title isEqual:((SKLevel *)other).title]) {
+        return YES;
+    }
+    return NO;
+}
+
+
+- (NSUInteger)hash {
+    NSUInteger result = self.dataArray.hash ^ self.title.hash;
+    return result;
+}
+
+
 #pragma mark - <CheckInOutAvailable>
 
 - (void)checkIn {

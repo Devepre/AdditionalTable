@@ -37,6 +37,28 @@
 }
 
 
+#pragma mark - Equality
+
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    }
+    if (!other || ![other isKindOfClass:[self class]]) {
+        return NO;
+    }
+    // Comparting by dataObject property
+    if ([self.dataObject isEqual:((SKElement *)other).dataObject]) {
+        return YES;
+    }
+    return NO;
+}
+
+
+- (NSUInteger)hash {
+    NSUInteger result = self.dataObject.hash;
+    return result;
+}
+
 #pragma mark - <CheckInOutAvailable>
 
 - (void)checkIn {
