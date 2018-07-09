@@ -1,31 +1,31 @@
 //
-//  MagicViewController.m
+//  SKSelfNavigableTableViewController.m
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
 //  Copyright © 2018 Serhii K. All rights reserved.
 //
 
-#import "MagicViewController.h"
-#import "SelfNavigableTableViewProxy.h"
-#import "LevelTableViewCell.h"
-#import "Level.h"
-#import "Element.h"
+#import "SKSelfNavigableTableViewController.h"
+#import "SKSelfNavigableTableViewProxy.h"
+#import "SKLevelTableViewCell.h"
+#import "SKLevel.h"
+#import "SKElement.h"
 
-@interface MagicViewController ()
+@interface SKSelfNavigableTableViewController ()
 
-@property (strong, nonatomic) SelfNavigableTableViewProxy *selfNavigableTableProxy;
+@property (strong, nonatomic) SKSelfNavigableTableViewProxy *selfNavigableTableProxy;
 @property (strong, nonatomic) NSMutableArray<UIBarButtonItem *> *rightBarButtonItems;
 
 @end
 
-@implementation MagicViewController
+@implementation SKSelfNavigableTableViewController
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.selfNavigableTableProxy = [[SelfNavigableTableViewProxy alloc]
+    self.selfNavigableTableProxy = [[SKSelfNavigableTableViewProxy alloc]
                                     initWithDatasource:self.datasourceLevel
                                     forTableView:self.tableView];
     
@@ -102,7 +102,7 @@
 
 
 - (void)tableAddItem:(NSString *)addedEmail {
-    Element *newEmailElement = [[Element alloc]
+    SKElement *newEmailElement = [[SKElement alloc]
                                 initWithTitle:addedEmail
                                 dataObject:addedEmail
                                 checked:YES];

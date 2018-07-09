@@ -1,5 +1,5 @@
 //
-//  CheckInOutAvailable.h
+//  SKCheckInOutAvailable.h
 //  AdditionalTable
 //
 //  Created by Limitation on 7/8/18.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol CheckInOutAvailable <NSObject>
+@protocol SKCheckInOutAvailable <NSObject>
 
 @required
 

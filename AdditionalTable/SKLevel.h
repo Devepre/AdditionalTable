@@ -1,5 +1,5 @@
 //
-//  Level.h
+//  SKLevel.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TableSourceItem.h"
+#import "SKTableSourceItem.h"
 
-@interface Level : TableSourceItem
+@interface SKLevel : SKTableSourceItem
 
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSMutableArray<TableSourceItem *> *dataArray;
+@property (strong, nonatomic) NSMutableArray<SKTableSourceItem *> *dataArray;
 @property (assign, nonatomic, getter=isAddOptionEnabled) BOOL addOpitonEnabled;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithTitle:(NSString *)title
-                         dataArray:(NSMutableArray<TableSourceItem *> *)dataArray
+                         dataArray:(NSMutableArray<SKTableSourceItem *> *)dataArray
              addOptionEnabled:(BOOL)addOptionEnabled NS_DESIGNATED_INITIALIZER;
 
 - (NSUInteger)numberOfCheckedElementsWithTotal:(NSUInteger *)total;

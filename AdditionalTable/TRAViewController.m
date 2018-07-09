@@ -7,16 +7,16 @@
 //
 
 #import "TRAViewController.h"
-#import "SelfNavigableTableViewProxy.h"
+#import "SKSelfNavigableTableViewProxy.h"
 #import "ClientItem.h"
 #import "ContactItem.h"
-#import "Element.h"
+#import "SKElement.h"
 
 @interface TRAViewController () {
     BOOL _checkedByDefaults;
 }
 
-@property (strong, nonatomic) SelfNavigableTableViewProxy *selfNavigableTableProxy;
+@property (strong, nonatomic) SKSelfNavigableTableViewProxy *selfNavigableTableProxy;
 
 @end
 
@@ -27,7 +27,7 @@
     [super viewDidLoad];
     
     self.rootLevel = [self createLevelHierarchy];
-    self.selfNavigableTableProxy = [[SelfNavigableTableViewProxy alloc]
+    self.selfNavigableTableProxy = [[SKSelfNavigableTableViewProxy alloc]
                                     initWithDatasource:self.rootLevel
                                     forTableView:self.tableView];
     
@@ -47,7 +47,7 @@
 }
 
 
-- (Level *)createLevelHierarchy {
+- (SKLevel *)createLevelHierarchy {
     _checkedByDefaults = NO;
     
     ClientItem *clientBuilding = [[ClientItem alloc] initWithTitle:@"Building" dataObject:@"BuildingValue"];
@@ -71,59 +71,59 @@
     clientDepartment.emails = [@[emailFive] mutableCopy];
     
     // Elements for Buildings
-    Element *element_building_0 = [[Element alloc] initWithTitle:clientBuilding.emails[0].title
+    SKElement *element_building_0 = [[SKElement alloc] initWithTitle:clientBuilding.emails[0].title
                                                       dataObject:clientBuilding.emails[0].dataObject
                                                          checked:_checkedByDefaults];
-    Element *element_building_1 = [[Element alloc] initWithTitle:clientBuilding.emails[1].title
+    SKElement *element_building_1 = [[SKElement alloc] initWithTitle:clientBuilding.emails[1].title
                                                       dataObject:clientBuilding.emails[1].dataObject
                                                          checked:_checkedByDefaults];
     // Buildings Level
-    Level *level_building = [[Level alloc] initWithTitle:@"Buildings"
+    SKLevel *level_building = [[SKLevel alloc] initWithTitle:@"Buildings"
                                                     dataArray:[@[element_building_0, element_building_1] mutableCopy]
                                         addOptionEnabled:NO];
     
     // Elements for Hospitals
-    Element *element_hospital_0 = [[Element alloc] initWithTitle:clientHospital.emails[0].title
+    SKElement *element_hospital_0 = [[SKElement alloc] initWithTitle:clientHospital.emails[0].title
                                                       dataObject:clientHospital.emails[0].dataObject
                                    checked:_checkedByDefaults];
-    Element *element_hospital_1 = [[Element alloc] initWithTitle:clientHospital.emails[1].title
+    SKElement *element_hospital_1 = [[SKElement alloc] initWithTitle:clientHospital.emails[1].title
                                                       dataObject:clientHospital.emails[1].dataObject
                                    checked:_checkedByDefaults];
     // Hospital Level
-    Level *level_hospital = [[Level alloc] initWithTitle:@"Hospitals"
+    SKLevel *level_hospital = [[SKLevel alloc] initWithTitle:@"Hospitals"
                                                     dataArray:[@[element_hospital_0, element_hospital_1] mutableCopy]
                                         addOptionEnabled:NO];
     
     /////////////////////////////
-    Element *element_department_0 = [[Element alloc] initWithTitle:email1.title
+    SKElement *element_department_0 = [[SKElement alloc] initWithTitle:email1.title
                                                         dataObject:email1.dataObject
                                                            checked:_checkedByDefaults];
-    Element *element_department_1 = [[Element alloc] initWithTitle:email2.title
+    SKElement *element_department_1 = [[SKElement alloc] initWithTitle:email2.title
                                                         dataObject:email2.dataObject
                                                            checked:_checkedByDefaults];
-    Element *element_department_1_0 = [[Element alloc] initWithTitle:email3.title
+    SKElement *element_department_1_0 = [[SKElement alloc] initWithTitle:email3.title
                                                           dataObject:email3.dataObject
                                                              checked:_checkedByDefaults];
-    Element *element_department_1_1 = [[Element alloc] initWithTitle:email4.title
+    SKElement *element_department_1_1 = [[SKElement alloc] initWithTitle:email4.title
                                                           dataObject:email4.dataObject
                                                              checked:_checkedByDefaults];
     
     
-    Level *level_department_0 = [[Level alloc] initWithTitle:@"Sub Departments"
+    SKLevel *level_department_0 = [[SKLevel alloc] initWithTitle:@"Sub Departments"
                                                         dataArray:[@[element_department_0, element_department_1] mutableCopy]
                                             addOptionEnabled:YES];
     
-    Level *level_department_1 = [[Level alloc] initWithTitle:@"Sub Departments"
+    SKLevel *level_department_1 = [[SKLevel alloc] initWithTitle:@"Sub Departments"
                                                         dataArray:[@[element_department_1_0, element_department_1_1] mutableCopy]
                                             addOptionEnabled:YES];
     
     // Department Level
-    Level *level_department = [[Level alloc] initWithTitle:@"Departments"
+    SKLevel *level_department = [[SKLevel alloc] initWithTitle:@"Departments"
                                                       dataArray:[@[level_department_0, level_department_1] mutableCopy]
                                           addOptionEnabled:NO];
     
     
-    Level *levelRoot = [[Level alloc] initWithTitle:@"Root Table"
+    SKLevel *levelRoot = [[SKLevel alloc] initWithTitle:@"Root Table"
                                                dataArray:[@[level_building, level_hospital, level_department] mutableCopy]
                                    addOptionEnabled:NO];
     

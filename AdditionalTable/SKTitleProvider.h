@@ -1,5 +1,5 @@
 //
-//  TitleProvider.h
+//  SKTitleProvider.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol TitleProvider <NSObject>
+@protocol SKTitleProvider <NSObject>
 
 @required
 

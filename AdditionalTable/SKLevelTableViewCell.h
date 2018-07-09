@@ -1,5 +1,5 @@
 //
-//  ElementTableViewCell.h
+//  SKLevelTableViewCell.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ElementTableViewCell : UITableViewCell
+@interface SKLevelTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *mainTextLabel;
+@property (weak, nonatomic) IBOutlet UILabel *additionalInfoTextLabel;
 
 @end

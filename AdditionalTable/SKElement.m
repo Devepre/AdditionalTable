@@ -1,14 +1,14 @@
 //
-//  Element.m
+//  SKElement.m
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
 //  Copyright © 2018 Serhii K. All rights reserved.
 //
 
-#import "Element.h"
+#import "SKElement.h"
 
-@implementation Element
+@implementation SKElement
 
 
 - (instancetype)initWithTitle:(NSString *)title

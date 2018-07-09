@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <ContactsUI/ContactsUI.h>
 #import <Contacts/Contacts.h>
-@class Level;
+@class SKLevel;
 
 @interface TRAViewController : UIViewController <CNContactPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) Level *rootLevel;
+@property (strong, nonatomic) SKLevel *rootLevel;
 // For internal use only
 @property (strong, nonatomic) NSMutableArray<NSString *> *emailsAddedManually;
 

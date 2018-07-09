@@ -1,5 +1,5 @@
 //
-//  Client.h
+//  ClientItem.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TitleProvider.h"
+#import "SKTitleProvider.h"
 
-@interface ClientItem : NSObject <TitleProvider>
+@interface ClientItem : NSObject <SKTitleProvider>
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSObject *dataObject;
-@property (strong, nonatomic) NSMutableArray<id<TitleProvider>> *emails;
+@property (strong, nonatomic) NSMutableArray<id<SKTitleProvider>> *emails;
 
 - (instancetype)initWithTitle:(NSString *)title dataObject:(nonnull id)dataObject;
 

@@ -1,5 +1,5 @@
 //
-//  MagicViewController.h
+//  SKSelfNavigableTableViewController.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <ContactsUI/ContactsUI.h>
 #import <Contacts/Contacts.h>
-#import "TitleProvider.h"
-#import "Level.h"
+#import "SKTitleProvider.h"
+#import "SKLevel.h"
 
-@interface MagicViewController : UIViewController<CNContactPickerDelegate>
+@interface SKSelfNavigableTableViewController : UIViewController<CNContactPickerDelegate>
 
-@property (strong, nonatomic) Level *datasourceLevel;
+@property (strong, nonatomic) SKLevel *datasourceLevel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  BobikTableViewDelegate.h
+//  SKSelfNavigableTableViewProxy.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/5/18.
@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "TitleProvider.h"
-#import "Level.h"
+#import "SKTitleProvider.h"
+#import "SKLevel.h"
 
-@interface SelfNavigableTableViewProxy : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface SKSelfNavigableTableViewProxy : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) Level *datasourceLevel;
+@property (strong, nonatomic) SKLevel *datasourceLevel;
 @property (strong, nonatomic) NSMutableArray<NSString *> *emailsAddedManually;
 
-- (instancetype)initWithDatasource:(Level *)datasourceLevel
+- (instancetype)initWithDatasource:(SKLevel *)datasourceLevel
                       forTableView:(UITableView *)table  NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 

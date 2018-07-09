@@ -1,18 +1,18 @@
 //
-//  BobikTableViewDelegate.m
+//  SKSelfNavigableTableViewProxy.m
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/5/18.
 //  Copyright © 2018 Serhii K. All rights reserved.
 //
 
-#import "SelfNavigableTableViewProxy.h"
-#import "MagicViewController.h"
-#import "LevelTableViewCell.h"
-#import "Level.h"
-#import "Element.h"
+#import "SKSelfNavigableTableViewProxy.h"
+#import "SKSelfNavigableTableViewController.h"
+#import "SKLevelTableViewCell.h"
+#import "SKLevel.h"
+#import "SKElement.h"
 
-@interface SelfNavigableTableViewProxy () {
+@interface SKSelfNavigableTableViewProxy () {
     NSString *kLevelCellNibName;
     NSString *kElementCellNibName;
     NSString *kLevelCellIdentifier;
@@ -23,10 +23,10 @@
 
 @end
 
-@implementation SelfNavigableTableViewProxy
+@implementation SKSelfNavigableTableViewProxy
 
 
-- (instancetype)initWithDatasource:(Level *)datasourceLevel
+- (instancetype)initWithDatasource:(SKLevel *)datasourceLevel
                       forTableView:(UITableView *)tableView {
     self = [super init];
     if (self) {
@@ -44,8 +44,8 @@
     // TODO Can be moved to instance variables in order to be initialized only once
     kLevelCellIdentifier =      @"LevelCell";
     kElementCellIdentifier =    @"ElementCell";
-    kLevelCellNibName =         @"LevelTableViewCell";
-    kElementCellNibName =       @"ElementTableViewCell";
+    kLevelCellNibName =         @"SKLevelTableViewCell";
+    kElementCellNibName =       @"SKElementTableViewCell";
     
     NSLog(@"%@", self.datasourceLevel);
 }
@@ -63,33 +63,33 @@
     // Getting correct cell identifier and nib name
     NSString *cellIdentifier = @"defaultCellIdentifier";
     NSString *nibName = @"defaultNibName";
-    if ([[self.datasourceLevel.dataArray firstObject] isKindOfClass:Level.class]) {
+    if ([[self.datasourceLevel.dataArray firstObject] isKindOfClass:SKLevel.class]) {
         cellIdentifier = kLevelCellIdentifier;
         nibName = kLevelCellNibName;
-    } else if ([[self.datasourceLevel.dataArray firstObject] isKindOfClass:Element.class]) {
+    } else if ([[self.datasourceLevel.dataArray firstObject] isKindOfClass:SKElement.class]) {
         cellIdentifier = kElementCellIdentifier;
         nibName = kElementCellNibName;
     }
 
     // Creating cell
-    LevelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SKLevelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         [tableView registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
 
     // Populating cell with data according to the Protocol
-    id<TitleProvider> currentObject = [self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
+    id<SKTitleProvider> currentObject = [self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     cell.mainTextLabel.text = [currentObject title];
     
     // Setting checkmarks according to the model state
     if ([cellIdentifier isEqualToString:kElementCellIdentifier]) {
-        Element *currentElement = (Element *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
+        SKElement *currentElement = (SKElement *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
         cell.accessoryType = currentElement.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else {
         // Setting counters
         NSUInteger total = 0;
-        NSUInteger numberOfCheckedElements = [((Level *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row]) numberOfCheckedElementsWithTotal:&total];
+        NSUInteger numberOfCheckedElements = [((SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row]) numberOfCheckedElementsWithTotal:&total];
         NSString *counterString = [NSString stringWithFormat:@"%lu//%lu", (unsigned long)numberOfCheckedElements, (unsigned long)total];
         cell.additionalInfoTextLabel.text = counterString;
     }
@@ -124,7 +124,7 @@
     BOOL isCellSelected = (selectedCell.accessoryType == UITableViewCellAccessoryCheckmark);
     
     // Handling datasource item
-    TableSourceItem *currentObject = [self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
+    SKTableSourceItem *currentObject = [self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     isCellSelected ? [currentObject checkOut] : [currentObject checkIn];
 
     // Hadnling table UI changes manually instead of reloading data
@@ -137,8 +137,8 @@
     NSLog(@"%s", __func__);
     
     UIStoryboard *currentStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MagicViewController *nextController = [currentStoryBoard instantiateViewControllerWithIdentifier:@"MagicViewController"];
-    nextController.datasourceLevel = (Level *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
+    SKSelfNavigableTableViewController *nextController = [currentStoryBoard instantiateViewControllerWithIdentifier:@"MagicViewController"];
+    nextController.datasourceLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     
     UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     if ([rootViewController isKindOfClass:UINavigationController.class]) {

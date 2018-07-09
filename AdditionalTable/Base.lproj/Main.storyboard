@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="1056.8" y="118.29085457271366"/>
         </scene>
-        <!--Magic View Controller-->
+        <!--Self Navigable Table View Controller-->
         <scene sceneID="z8Y-oV-rP9">
             <objects>
-                <viewController storyboardIdentifier="MagicViewController" automaticallyAdjustsScrollViewInsets="NO" id="yML-Ma-NLz" customClass="MagicViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MagicViewController" automaticallyAdjustsScrollViewInsets="NO" id="yML-Ma-NLz" customClass="SKSelfNavigableTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5C8-Qa-Mbx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

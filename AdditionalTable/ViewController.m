@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "MagicViewController.h"
-#import "Level.h"
-#import "Element.h"
-#import "TitleProvider.h"
+#import "SKSelfNavigableTableViewController.h"
+#import "SKLevel.h"
+#import "SKElement.h"
+#import "SKTitleProvider.h"
 #import "ClientItem.h"
 #import "ContactItem.h"
 

@@ -1,5 +1,5 @@
 //
-//  Element.h
+//  SKElement.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TableSourceItem.h"
+#import "SKTableSourceItem.h"
 
-@interface Element : TableSourceItem
+@interface SKElement : SKTableSourceItem
 
 @property (strong, nonatomic) NSString *title;
 @property (weak, nonatomic) NSObject *dataObject;

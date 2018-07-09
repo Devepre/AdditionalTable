@@ -1,5 +1,5 @@
 //
-//  EMail.h
+//  ContactItem.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TitleProvider.h"
+#import "SKTitleProvider.h"
 
-@interface ContactItem : NSObject<TitleProvider>
+@interface ContactItem : NSObject<SKTitleProvider>
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *dataObject;
