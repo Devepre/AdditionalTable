@@ -23,5 +23,6 @@
 - (NSUInteger)numberOfCheckedElementsWithTotal:(NSUInteger *)total;
 
 - (void)checkIn;
+- (BOOL)addItem:(nonnull SKTableSourceItem *)item;
 
 @end

@@ -17,9 +17,12 @@
     NSString *kAddFromcontactsString;
     NSString *kAddManuallyString;
     NSString *kCancelString;
+    NSString *kSkipString;
     NSString *kAddString;
     NSString *kAddManuallyTitleString;
     NSString *kEmailPlaceHolder;
+    NSString *kDuplicateString;
+    NSString *kAlreadyPresentString;
 }
 
 @property (strong, nonatomic) SKSelfNavigableTableViewProxy *selfNavigableTableProxy;
@@ -59,9 +62,12 @@
     kAddFromcontactsString =     @"Add email from Contacts";
     kAddManuallyString =         @"Enter email manually";
     kCancelString =              @"Cancel";
+    kSkipString =                @"Skip";
     kAddString =                 @"Add";
     kAddManuallyTitleString =    @"Enter the email address";
     kEmailPlaceHolder =          @"example@domain.com";
+    kDuplicateString =           @"Duplicate entry";
+    kAlreadyPresentString =      @"This email is already present in the sender's list";
 }
 
 
@@ -96,7 +102,7 @@
 }
 
 
-#pragma mark - Additional Methods
+#pragma mark - Alert Controllers
 
 - (void)addNewObject:(UIBarButtonItem *)sender {
     UIAlertController *alertController = [UIAlertController
@@ -122,28 +128,15 @@
                                    actionWithTitle:kCancelString
                                    style:UIAlertActionStyleCancel
                                    handler:nil];
-
+    
     [alertController addAction:contactsAction];
     [alertController addAction:manualAction];
     [alertController addAction:cancelAction];
-
+    
     // Handling presentation for iPads
     [alertController setModalPresentationStyle:UIModalPresentationPopover];
     alertController.popoverPresentationController.barButtonItem = sender;
     [self presentViewController:alertController animated:YES completion:nil];
-}
-
-
-- (void)addFromContacts {
-    CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc] init];
-    contactPicker.displayedPropertyKeys = @[CNContactEmailAddressesKey];
-    contactPicker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
-    
-    // In order to enable selection of contact only if one e-mail addres is present
-    contactPicker.predicateForSelectionOfContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count == 1"];
-    contactPicker.delegate = self;
-    
-    [self presentViewController:contactPicker animated:YES completion:nil];
 }
 
 
@@ -152,7 +145,7 @@
                                        alertControllerWithTitle:kAddManuallyTitleString
                                        message:nil
                                        preferredStyle:UIAlertControllerStyleAlert];
-
+    
     __weak typeof(self) weakSelf = self;
     NSString *kEmailPlaceHolderWeakString = [kEmailPlaceHolder copy];
     
@@ -193,6 +186,56 @@
 }
 
 
+- (void)displayDuplicateElementAlert {
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:kDuplicateString
+                                          message:kAlreadyPresentString
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:kSkipString
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
+    
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+#pragma mark - Additional Methods
+
+- (void)addFromContacts {
+    CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc] init];
+    contactPicker.displayedPropertyKeys = @[CNContactEmailAddressesKey];
+    contactPicker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
+    
+    // In order to enable selection of contact only if one email addres is present
+    contactPicker.predicateForSelectionOfContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count == 1"];
+    contactPicker.delegate = self;
+    
+    [self presentViewController:contactPicker animated:YES completion:nil];
+}
+
+
+- (void)tableAddItem:(NSString *)addedEmail {
+    SKElement *newEmailElement = [[SKElement alloc]
+                                  initWithTitle:addedEmail
+                                  dataObject:addedEmail
+                                  checked:YES];
+    
+    BOOL isElementAdded = [self.datasourceLevel addItem:newEmailElement];
+    if (isElementAdded) {
+        NSIndexPath *indexPathToInsert = [NSIndexPath
+                                          indexPathForRow:self.datasourceLevel.dataArray.count - 1
+                                          inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPathToInsert]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else {
+        [self displayDuplicateElementAlert];
+    }
+}
+
+
 - (void)markAllCellsChecked {
     [self.selfNavigableTableProxy markAllCellsChecked];
 }
@@ -201,26 +244,23 @@
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     NSString *userInputString = [contact.emailAddresses firstObject].value;
-    [self tableAddItem:userInputString];
+    // Need to dismiss it manually in order to be able
+    // to present UIAlertController from tableAddItem: check
+    [picker dismissViewControllerAnimated:YES
+                               completion:^{
+                                   [self tableAddItem:userInputString];
+                               }];
 }
 
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
     NSString *userInputString = contactProperty.value;
-    [self tableAddItem:userInputString];
-}
-
-
-- (void)tableAddItem:(NSString *)addedEmail {
-    SKElement *newEmailElement = [[SKElement alloc]
-                                initWithTitle:addedEmail
-                                dataObject:addedEmail
-                                checked:YES];
-    [self.datasourceLevel.dataArray addObject:newEmailElement];
-
-    NSIndexPath *indexPathToInsert = [NSIndexPath indexPathForRow:self.datasourceLevel.dataArray.count - 1 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPathToInsert]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
+    // Need to dismiss it manually in order to be able
+    // to present UIAlertController from tableAddItem: check
+    [picker dismissViewControllerAnimated:YES
+                               completion:^{
+                                    [self tableAddItem:userInputString];
+                               }];
 }
 
 
