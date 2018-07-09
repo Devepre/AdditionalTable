@@ -83,7 +83,7 @@
     
     // Setting checkmarks according to the model state
     if ([cellIdentifier isEqualToString:kElementCellIdentifier]) {
-        Element *currentElement = [self.datasourceLevel.data objectAtIndex:indexPath.row];
+        Element *currentElement = (Element *)[self.datasourceLevel.data objectAtIndex:indexPath.row];
         cell.accessoryType = currentElement.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else {
         // Setting counters
@@ -121,11 +121,14 @@
     NSLog(@"%s", __func__);
     
     BOOL isCellSelected = (selectedCell.accessoryType == UITableViewCellAccessoryCheckmark);
+    
+    // Handling datasource item
+    TableSourceItem *currentObject = [self.datasourceLevel.data objectAtIndex:indexPath.row];
+    isCellSelected ? [currentObject checkOut] : [currentObject checkIn];
+
+    // Hadnling table UI changes manually instead of reloading data
     selectedCell.accessoryType = isCellSelected ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    Element *currentObject = [self.datasourceLevel.data objectAtIndex:indexPath.row];
-    currentObject.checked = !isCellSelected;
 }
 
 
@@ -134,7 +137,7 @@
     
     UIStoryboard *currentStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MagicViewController *nextController = [currentStoryBoard instantiateViewControllerWithIdentifier:@"MagicViewController"];
-    nextController.datasourceLevel = [self.datasourceLevel.data objectAtIndex:indexPath.row];
+    nextController.datasourceLevel = (Level *)[self.datasourceLevel.data objectAtIndex:indexPath.row];
     
     UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     if ([rootViewController isKindOfClass:UINavigationController.class]) {
@@ -146,9 +149,7 @@
 }
 
 - (void)markAllCellsChecked {
-    for (Element *currentElement in self.datasourceLevel.data) {
-        currentElement.checked = YES;
-    }
+    [self.datasourceLevel checkIn];
     [self.tableView reloadData];
 }
 

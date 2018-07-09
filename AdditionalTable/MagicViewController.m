@@ -34,20 +34,20 @@
     
     self.rightBarButtonItems = [[NSMutableArray alloc] init];
     
+    // Check All Button item
+//    if ([[self.datasourceLevel.data firstObject] isKindOfClass:Element.class]) {
+        UIBarButtonItem *checkAllButton = [[UIBarButtonItem alloc]
+                                           initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                           target:self action:@selector(markAllCellsChecked)];
+        [self.rightBarButtonItems addObject:checkAllButton];
+//    }
+
     // Add New Button item
     if (self.datasourceLevel.isAddOptionEnabled) {
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                       initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                       target:self action:@selector(insertNewObject)];
         [self.rightBarButtonItems addObject:addButton];
-    }
-    
-    // Check All Button item
-    if ([[self.datasourceLevel.data firstObject] isKindOfClass:Element.class]) {
-        UIBarButtonItem *checkAllButton = [[UIBarButtonItem alloc]
-                                           initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                           target:self action:@selector(markAllCellsChecked)];
-        [self.rightBarButtonItems addObject:checkAllButton];
     }
     
     [self.navigationItem setRightBarButtonItems:self.rightBarButtonItems];

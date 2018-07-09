@@ -36,4 +36,15 @@
 }
 
 
+#pragma mark - <CheckInOutAvailable>
+
+- (void)checkIn {
+    self.checked = YES;
+}
+
+
+- (void)checkOut {
+    self.checked = NO;
+}
+
 @end

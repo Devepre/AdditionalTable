@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		246F5FCE20F2358C00ED0ED0 /* TableSourceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 246F5FCD20F2358C00ED0ED0 /* TableSourceItem.m */; };
 		472B062B20ECF750004D09CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B062A20ECF750004D09CA /* AppDelegate.m */; };
 		472B062E20ECF750004D09CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B062D20ECF750004D09CA /* ViewController.m */; };
 		472B063120ECF750004D09CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 472B062F20ECF750004D09CA /* Main.storyboard */; };
@@ -27,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		246F5FCC20F2358C00ED0ED0 /* TableSourceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableSourceItem.h; sourceTree = "<group>"; };
+		246F5FCD20F2358C00ED0ED0 /* TableSourceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableSourceItem.m; sourceTree = "<group>"; };
+		246F5FCF20F237EA00ED0ED0 /* CheckInOutAvailable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInOutAvailable.h; sourceTree = "<group>"; };
 		472B062620ECF750004D09CA /* AdditionalTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdditionalTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		472B062920ECF750004D09CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		472B062A20ECF750004D09CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -148,6 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				472B065220ED122C004D09CA /* TitleProvider.h */,
+				246F5FCF20F237EA00ED0ED0 /* CheckInOutAvailable.h */,
+				246F5FCC20F2358C00ED0ED0 /* TableSourceItem.h */,
+				246F5FCD20F2358C00ED0ED0 /* TableSourceItem.m */,
 				472B065320ED1373004D09CA /* Level.h */,
 				472B065420ED1373004D09CA /* Level.m */,
 				47D78D9D20ED251700C64084 /* Element.h */,
@@ -236,6 +243,7 @@
 				472B065820ED1898004D09CA /* Client.m in Sources */,
 				47D78DA520EE1F9C00C64084 /* TRAViewController.m in Sources */,
 				47D78DA220EE1D0500C64084 /* SelfNavigableTableViewProxy.m in Sources */,
+				246F5FCE20F2358C00ED0ED0 /* TableSourceItem.m in Sources */,
 				472B062E20ECF750004D09CA /* ViewController.m in Sources */,
 				472B063920ECF752004D09CA /* main.m in Sources */,
 				472B064520ECFBBB004D09CA /* LevelTableViewCell.m in Sources */,

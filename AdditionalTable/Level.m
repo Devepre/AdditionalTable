@@ -13,7 +13,7 @@
 
 
 - (instancetype)initWithTitle:(NSString *)title
-                         data:(NSMutableArray<id<TitleProvider>> *)data
+                         data:(NSMutableArray<TableSourceItem *> *)data
              addOptionEnabled:(BOOL)addOptionEnabled {
     self = [super init];
     if (self) {
@@ -45,7 +45,7 @@
     // instead of computating each time
     NSInteger result = 0;
     
-    for (NSObject *object in self.data) {
+    for (TableSourceItem *object in self.data) {
         if ([object isKindOfClass:Level.class]) {
             result+=[((Level *)object) numberOfCheckedElementsWithTotal:total];
         } else if ([object isKindOfClass:Element.class]) {
@@ -59,6 +59,22 @@
     }
     
     return result;
+}
+
+
+#pragma mark - <CheckInOutAvailable>
+
+- (void)checkIn {
+    for (TableSourceItem *object in self.data) {
+        [object checkIn];
+    }
+}
+
+
+- (void)checkOut {
+    for (TableSourceItem *object in self.data) {
+        [object checkOut];
+    }
 }
 
 

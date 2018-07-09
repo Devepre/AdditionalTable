@@ -7,18 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TitleProvider.h"
+#import "TableSourceItem.h"
 
-@interface Level : NSObject<TitleProvider>
+@interface Level : TableSourceItem
 
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSMutableArray<id<TitleProvider>> *data;
+@property (strong, nonatomic) NSMutableArray<TableSourceItem *> *data;
 @property (assign, nonatomic, getter=isAddOptionEnabled) BOOL addOpitonEnabled;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithTitle:(NSString *)title
-                         data:(NSMutableArray<id<TitleProvider>> *)data
+                         data:(NSMutableArray<TableSourceItem *> *)data
              addOptionEnabled:(BOOL)addOptionEnabled NS_DESIGNATED_INITIALIZER;
 - (NSUInteger)numberOfCheckedElementsWithTotal:(NSUInteger *)total;
+
+- (void)checkIn;
 
 @end

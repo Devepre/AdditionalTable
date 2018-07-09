@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TitleProvider.h"
+#import "TableSourceItem.h"
 
-@interface Element : NSObject<TitleProvider>
+@interface Element : TableSourceItem
 
 @property (strong, nonatomic) NSString *title;
 @property (assign, nonatomic, getter=isChecked) BOOL checked;
