@@ -25,6 +25,7 @@
 		47D78D9F20ED251700C64084 /* SKElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78D9E20ED251700C64084 /* SKElement.m */; };
 		47D78DA220EE1D0500C64084 /* SKSelfNavigableTableViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78DA120EE1D0500C64084 /* SKSelfNavigableTableViewProxy.m */; };
 		47D78DA520EE1F9C00C64084 /* TRAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78DA420EE1F9C00C64084 /* TRAViewController.m */; };
+		47E19DC620F3A3050073818F /* NSString+SKEmailValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DC520F3A3050073818F /* NSString+SKEmailValidation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		47D78DA120EE1D0500C64084 /* SKSelfNavigableTableViewProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKSelfNavigableTableViewProxy.m; sourceTree = "<group>"; };
 		47D78DA320EE1F9C00C64084 /* TRAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRAViewController.h; sourceTree = "<group>"; };
 		47D78DA420EE1F9C00C64084 /* TRAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRAViewController.m; sourceTree = "<group>"; };
+		47E19DC420F3A3050073818F /* NSString+SKEmailValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SKEmailValidation.h"; sourceTree = "<group>"; };
+		47E19DC520F3A3050073818F /* NSString+SKEmailValidation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SKEmailValidation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				472B063820ECF752004D09CA /* main.m */,
 				472B063F20ECFA5C004D09CA /* SKSelfNavigableTableViewController.h */,
 				472B064020ECFA5C004D09CA /* SKSelfNavigableTableViewController.m */,
+				47E19DC420F3A3050073818F /* NSString+SKEmailValidation.h */,
+				47E19DC520F3A3050073818F /* NSString+SKEmailValidation.m */,
 				47D78D9C20ED24E700C64084 /* Models */,
 				478B780820ED24A3007EBD4B /* Custom Views */,
 				472B065C20ED23FC004D09CA /* BusinessModels */,
@@ -242,6 +247,7 @@
 				47D78D9F20ED251700C64084 /* SKElement.m in Sources */,
 				472B065820ED1898004D09CA /* ClientItem.m in Sources */,
 				47D78DA520EE1F9C00C64084 /* TRAViewController.m in Sources */,
+				47E19DC620F3A3050073818F /* NSString+SKEmailValidation.m in Sources */,
 				47D78DA220EE1D0500C64084 /* SKSelfNavigableTableViewProxy.m in Sources */,
 				246F5FCE20F2358C00ED0ED0 /* SKTableSourceItem.m in Sources */,
 				472B062E20ECF750004D09CA /* ViewController.m in Sources */,

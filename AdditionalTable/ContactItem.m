@@ -1,5 +1,5 @@
 //
-//  EMail.m
+//  ContactItem.m
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
