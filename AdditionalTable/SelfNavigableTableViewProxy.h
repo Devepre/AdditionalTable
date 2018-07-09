@@ -19,6 +19,7 @@
 - (instancetype)initWithDatasource:(Level *)datasourceLevel
                       forTableView:(UITableView *)table  NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
+
 - (void)markAllCellsChecked; //TODO protocol
 
 @end

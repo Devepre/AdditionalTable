@@ -13,12 +13,12 @@
 
 
 - (instancetype)initWithTitle:(NSString *)title
-                         data:(NSMutableArray<TableSourceItem *> *)data
+                         dataArray:(NSMutableArray<TableSourceItem *> *)dataArray
              addOptionEnabled:(BOOL)addOptionEnabled {
     self = [super init];
     if (self) {
         _title = title;
-        _data = data;
+        _dataArray = dataArray;
         _addOpitonEnabled = addOptionEnabled;
     }
 
@@ -28,13 +28,18 @@
 
 - (instancetype)init {
     NSAssert(NO, @"Allowed to use initWithTitle:data:addOptionEnabled: initializer only");
-
     return nil;
 }
 
 
 - (NSString *)description {
-    NSString *result = [NSString stringWithFormat:(@"%@ -> %@"), self.title, self.data];
+    NSMutableString *mutableString = [[NSMutableString alloc] init];
+    for (TableSourceItem *object in self.dataArray) {
+        [mutableString appendFormat:@"%@\n", [object description]];
+    }
+//    NSString *result = [NSString stringWithFormat:(@"%@ -> %@"), self.title, self.dataArray];
+    NSString *result = [NSString stringWithFormat:(@"%@ ->\n%@"), self.title, mutableString];
+
     return result;
 }
 
@@ -45,7 +50,7 @@
     // instead of computating each time
     NSInteger result = 0;
     
-    for (TableSourceItem *object in self.data) {
+    for (TableSourceItem *object in self.dataArray) {
         if ([object isKindOfClass:Level.class]) {
             result+=[((Level *)object) numberOfCheckedElementsWithTotal:total];
         } else if ([object isKindOfClass:Element.class]) {
@@ -65,14 +70,14 @@
 #pragma mark - <CheckInOutAvailable>
 
 - (void)checkIn {
-    for (TableSourceItem *object in self.data) {
+    for (TableSourceItem *object in self.dataArray) {
         [object checkIn];
     }
 }
 
 
 - (void)checkOut {
-    for (TableSourceItem *object in self.data) {
+    for (TableSourceItem *object in self.dataArray) {
         [object checkOut];
     }
 }

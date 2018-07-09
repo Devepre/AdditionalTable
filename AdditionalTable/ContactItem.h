@@ -1,5 +1,5 @@
 //
-//  Client.h
+//  EMail.h
 //  AdditionalTable
 //
 //  Created by Serhii K on 7/4/18.
@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "TitleProvider.h"
 
-@interface Client : NSObject<TitleProvider>
+@interface ContactItem : NSObject<TitleProvider>
 
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSMutableArray<id<TitleProvider>> *emails;
+@property (strong, nonatomic) NSString *dataObject;
 
-- (instancetype)initWithTitle:(NSString *)title;
+- (instancetype)initWithTitle:(NSString *)title email:(NSString *)email;
 
 @end

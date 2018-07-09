@@ -13,5 +13,6 @@
 @required
 
 - (NSString *)title;
+- (NSObject *)dataObject;
 
 @end

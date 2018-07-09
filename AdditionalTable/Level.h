@@ -12,13 +12,14 @@
 @interface Level : TableSourceItem
 
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSMutableArray<TableSourceItem *> *data;
+@property (strong, nonatomic) NSMutableArray<TableSourceItem *> *dataArray;
 @property (assign, nonatomic, getter=isAddOptionEnabled) BOOL addOpitonEnabled;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithTitle:(NSString *)title
-                         data:(NSMutableArray<TableSourceItem *> *)data
+                         dataArray:(NSMutableArray<TableSourceItem *> *)dataArray
              addOptionEnabled:(BOOL)addOptionEnabled NS_DESIGNATED_INITIALIZER;
+
 - (NSUInteger)numberOfCheckedElementsWithTotal:(NSUInteger *)total;
 
 - (void)checkIn;

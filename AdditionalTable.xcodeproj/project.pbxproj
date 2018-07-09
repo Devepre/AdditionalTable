@@ -20,8 +20,8 @@
 		472B065020ED01C6004D09CA /* ElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B064E20ED01C6004D09CA /* ElementTableViewCell.m */; };
 		472B065120ED01C6004D09CA /* ElementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 472B064F20ED01C6004D09CA /* ElementTableViewCell.xib */; };
 		472B065520ED1373004D09CA /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B065420ED1373004D09CA /* Level.m */; };
-		472B065820ED1898004D09CA /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B065720ED1898004D09CA /* Client.m */; };
-		472B065B20ED1B08004D09CA /* EMail.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B065A20ED1B08004D09CA /* EMail.m */; };
+		472B065820ED1898004D09CA /* ClientItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B065720ED1898004D09CA /* ClientItem.m */; };
+		472B065B20ED1B08004D09CA /* ContactItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B065A20ED1B08004D09CA /* ContactItem.m */; };
 		47D78D9F20ED251700C64084 /* Element.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78D9E20ED251700C64084 /* Element.m */; };
 		47D78DA220EE1D0500C64084 /* SelfNavigableTableViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78DA120EE1D0500C64084 /* SelfNavigableTableViewProxy.m */; };
 		47D78DA520EE1F9C00C64084 /* TRAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D78DA420EE1F9C00C64084 /* TRAViewController.m */; };
@@ -52,10 +52,10 @@
 		472B065220ED122C004D09CA /* TitleProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleProvider.h; sourceTree = "<group>"; };
 		472B065320ED1373004D09CA /* Level.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		472B065420ED1373004D09CA /* Level.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
-		472B065620ED1898004D09CA /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
-		472B065720ED1898004D09CA /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
-		472B065920ED1B08004D09CA /* EMail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMail.h; sourceTree = "<group>"; };
-		472B065A20ED1B08004D09CA /* EMail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMail.m; sourceTree = "<group>"; };
+		472B065620ED1898004D09CA /* ClientItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientItem.h; sourceTree = "<group>"; };
+		472B065720ED1898004D09CA /* ClientItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientItem.m; sourceTree = "<group>"; };
+		472B065920ED1B08004D09CA /* ContactItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactItem.h; sourceTree = "<group>"; };
+		472B065A20ED1B08004D09CA /* ContactItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactItem.m; sourceTree = "<group>"; };
 		4799A04820EF958800FE2FB7 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		47D78D9D20ED251700C64084 /* Element.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Element.h; sourceTree = "<group>"; };
 		47D78D9E20ED251700C64084 /* Element.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Element.m; sourceTree = "<group>"; };
@@ -119,10 +119,10 @@
 		472B065C20ED23FC004D09CA /* BusinessModels */ = {
 			isa = PBXGroup;
 			children = (
-				472B065620ED1898004D09CA /* Client.h */,
-				472B065720ED1898004D09CA /* Client.m */,
-				472B065920ED1B08004D09CA /* EMail.h */,
-				472B065A20ED1B08004D09CA /* EMail.m */,
+				472B065620ED1898004D09CA /* ClientItem.h */,
+				472B065720ED1898004D09CA /* ClientItem.m */,
+				472B065920ED1B08004D09CA /* ContactItem.h */,
+				472B065A20ED1B08004D09CA /* ContactItem.m */,
 			);
 			name = BusinessModels;
 			sourceTree = "<group>";
@@ -240,14 +240,14 @@
 				472B065020ED01C6004D09CA /* ElementTableViewCell.m in Sources */,
 				472B064120ECFA5C004D09CA /* MagicViewController.m in Sources */,
 				47D78D9F20ED251700C64084 /* Element.m in Sources */,
-				472B065820ED1898004D09CA /* Client.m in Sources */,
+				472B065820ED1898004D09CA /* ClientItem.m in Sources */,
 				47D78DA520EE1F9C00C64084 /* TRAViewController.m in Sources */,
 				47D78DA220EE1D0500C64084 /* SelfNavigableTableViewProxy.m in Sources */,
 				246F5FCE20F2358C00ED0ED0 /* TableSourceItem.m in Sources */,
 				472B062E20ECF750004D09CA /* ViewController.m in Sources */,
 				472B063920ECF752004D09CA /* main.m in Sources */,
 				472B064520ECFBBB004D09CA /* LevelTableViewCell.m in Sources */,
-				472B065B20ED1B08004D09CA /* EMail.m in Sources */,
+				472B065B20ED1B08004D09CA /* ContactItem.m in Sources */,
 				472B065520ED1373004D09CA /* Level.m in Sources */,
 				472B062B20ECF750004D09CA /* AppDelegate.m in Sources */,
 			);
@@ -397,7 +397,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ident.AdditionalTable;
+				PRODUCT_BUNDLE_IDENTIFIER = com.identD.AdditionalTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -415,7 +415,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ident.AdditionalTable;
+				PRODUCT_BUNDLE_IDENTIFIER = com.identD.AdditionalTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

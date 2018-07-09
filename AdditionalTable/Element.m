@@ -12,11 +12,13 @@
 
 
 - (instancetype)initWithTitle:(NSString *)title
-             checked:(BOOL)checked {
+                   dataObject:(nonnull id)dataObject
+                      checked:(BOOL)checked {
     self = [super init];
     if (self) {
         _title = title;
         _checked = checked;
+        _dataObject = dataObject;
     }
     
     return self;
@@ -25,13 +27,12 @@
 
 - (instancetype)init {
     NSAssert(NO, @"Allowed to use initWithTitle:checked: initializer only");
-    
     return nil;
 }
 
 
 - (NSString *)description {
-    NSString *result = [NSString stringWithFormat:(@"%@ -> %@"), self.title, self.checked ? @"YES" : @"NO"];
+    NSString *result = [NSString stringWithFormat:(@"%@ [%@] -> %@"), self.title, self.dataObject, self.checked ? @"YES" : @"NO"];
     return result;
 }
 

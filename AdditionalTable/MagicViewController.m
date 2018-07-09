@@ -55,6 +55,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     // Reloading data after pushing VC back from stack
     // Need to be optimized to execute only if pushed back
     // but not just created
@@ -103,10 +104,11 @@
 - (void)tableAddItem:(NSString *)addedEmail {
     Element *newEmailElement = [[Element alloc]
                                 initWithTitle:addedEmail
+                                dataObject:addedEmail
                                 checked:YES];
-    [self.datasourceLevel.data addObject:newEmailElement];
+    [self.datasourceLevel.dataArray addObject:newEmailElement];
 
-    NSIndexPath *indexPathToInsert = [NSIndexPath indexPathForRow:self.datasourceLevel.data.count - 1 inSection:0];
+    NSIndexPath *indexPathToInsert = [NSIndexPath indexPathForRow:self.datasourceLevel.dataArray.count - 1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPathToInsert]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
 }

@@ -41,6 +41,7 @@
 - (void)initDefaults {
     NSLog(@"%s", __func__);
     
+    // TODO Can be moved to instance variables in order to be initialized only once
     kLevelCellIdentifier =      @"LevelCell";
     kElementCellIdentifier =    @"ElementCell";
     kLevelCellNibName =         @"LevelTableViewCell";
@@ -53,19 +54,19 @@
 #pragma mark - <UITableViewDataSource, UITableViewDelegate>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.datasourceLevel.data.count;
+    return self.datasourceLevel.dataArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Getting correct cell identifier and nib name
-    NSString *cellIdentifier = nil;
-    NSString *nibName = nil;
-    if ([[self.datasourceLevel.data firstObject] isKindOfClass:Level.class]) {
+    NSString *cellIdentifier = @"defaultCellIdentifier";
+    NSString *nibName = @"defaultNibName";
+    if ([[self.datasourceLevel.dataArray firstObject] isKindOfClass:Level.class]) {
         cellIdentifier = kLevelCellIdentifier;
         nibName = kLevelCellNibName;
-    } else if ([[self.datasourceLevel.data firstObject] isKindOfClass:Element.class]) {
+    } else if ([[self.datasourceLevel.dataArray firstObject] isKindOfClass:Element.class]) {
         cellIdentifier = kElementCellIdentifier;
         nibName = kElementCellNibName;
     }
@@ -78,17 +79,17 @@
     }
 
     // Populating cell with data according to the Protocol
-    id<TitleProvider> currentObject = [self.datasourceLevel.data objectAtIndex:indexPath.row];
+    id<TitleProvider> currentObject = [self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     cell.mainTextLabel.text = [currentObject title];
     
     // Setting checkmarks according to the model state
     if ([cellIdentifier isEqualToString:kElementCellIdentifier]) {
-        Element *currentElement = (Element *)[self.datasourceLevel.data objectAtIndex:indexPath.row];
+        Element *currentElement = (Element *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
         cell.accessoryType = currentElement.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else {
         // Setting counters
         NSUInteger total = 0;
-        NSUInteger numberOfCheckedElements = [((Level *)[self.datasourceLevel.data objectAtIndex:indexPath.row]) numberOfCheckedElementsWithTotal:&total];
+        NSUInteger numberOfCheckedElements = [((Level *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row]) numberOfCheckedElementsWithTotal:&total];
         NSString *counterString = [NSString stringWithFormat:@"%lu//%lu", (unsigned long)numberOfCheckedElements, (unsigned long)total];
         cell.additionalInfoTextLabel.text = counterString;
     }
@@ -123,7 +124,7 @@
     BOOL isCellSelected = (selectedCell.accessoryType == UITableViewCellAccessoryCheckmark);
     
     // Handling datasource item
-    TableSourceItem *currentObject = [self.datasourceLevel.data objectAtIndex:indexPath.row];
+    TableSourceItem *currentObject = [self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     isCellSelected ? [currentObject checkOut] : [currentObject checkIn];
 
     // Hadnling table UI changes manually instead of reloading data
@@ -137,7 +138,7 @@
     
     UIStoryboard *currentStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MagicViewController *nextController = [currentStoryBoard instantiateViewControllerWithIdentifier:@"MagicViewController"];
-    nextController.datasourceLevel = (Level *)[self.datasourceLevel.data objectAtIndex:indexPath.row];
+    nextController.datasourceLevel = (Level *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     
     UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     if ([rootViewController isKindOfClass:UINavigationController.class]) {

@@ -8,8 +8,8 @@
 
 #import "TRAViewController.h"
 #import "SelfNavigableTableViewProxy.h"
-#import "Client.h"
-#import "EMail.h"
+#import "ClientItem.h"
+#import "ContactItem.h"
 #import "Element.h"
 
 @interface TRAViewController () {
@@ -39,6 +39,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     // Reloading data after pushing VC back from stack
     // Need to be optimized to execute only if pushed back
     // but not just created
@@ -49,15 +50,21 @@
 - (Level *)createLevelHierarchy {
     _checkedByDefaults = NO;
     
-    Client *clientBuilding = [[Client alloc] initWithTitle:@"Building"];
-    Client *clientHospital = [[Client alloc] initWithTitle:@"Hospital"];
-    Client *clientDepartment = [[Client alloc] initWithTitle:@"Department"];
+    ClientItem *clientBuilding = [[ClientItem alloc] initWithTitle:@"Building" dataObject:@"BuildingValue"];
+    ClientItem *clientHospital = [[ClientItem alloc] initWithTitle:@"Hospital" dataObject:@"HospitalValue"];
+    ClientItem *clientDepartment = [[ClientItem alloc] initWithTitle:@"Department" dataObject:@"DepartmentValue"];
     
-    EMail *emailOne = [[EMail alloc] initWithTitle:@"one@dot.com"];
-    EMail *emailTwo = [[EMail alloc] initWithTitle:@"two@dot.com"];
-    EMail *emailThree = [[EMail alloc] initWithTitle:@"three@dot.com"];
-    EMail *emailFour = [[EMail alloc] initWithTitle:@"four@dot.com"];
-    EMail *emailFive = [[EMail alloc] initWithTitle:@"five@dot.com"];
+    ContactItem *emailOne = [[ContactItem alloc] initWithTitle:@"one@dot.com" email:@"one@dot.com"];
+    ContactItem *emailTwo = [[ContactItem alloc] initWithTitle:@"two@dot.com" email:@"two@dot.com"];
+    ContactItem *emailThree = [[ContactItem alloc] initWithTitle:@"three@dot.com" email:@"three@dot.com"];
+    ContactItem *emailFour = [[ContactItem alloc] initWithTitle:@"four@dot.com" email:@"four@dot.com"];
+    ContactItem *emailFive = [[ContactItem alloc] initWithTitle:@"five@dot.com" email:@"five@dot.com"];
+    
+    // For departments
+    ContactItem *email1 = [[ContactItem alloc] initWithTitle:@"DepOne" email:@"hard@dot.com"];
+    ContactItem *email2 = [[ContactItem alloc] initWithTitle:@"DepTwo" email:@"hard2@dot.com"];
+    ContactItem *email3 = [[ContactItem alloc] initWithTitle:@"DepThree" email:@"hard3@dot.com"];
+    ContactItem *email4 = [[ContactItem alloc] initWithTitle:@"DepFour" email:@"hard4@dot.com"];
     
     clientBuilding.emails = [@[emailOne, emailTwo] mutableCopy];
     clientHospital.emails = [@[emailThree, emailFour] mutableCopy];
@@ -65,51 +72,59 @@
     
     // Elements for Buildings
     Element *element_building_0 = [[Element alloc] initWithTitle:clientBuilding.emails[0].title
+                                                      dataObject:clientBuilding.emails[0].dataObject
                                                          checked:_checkedByDefaults];
     Element *element_building_1 = [[Element alloc] initWithTitle:clientBuilding.emails[1].title
+                                                      dataObject:clientBuilding.emails[1].dataObject
                                                          checked:_checkedByDefaults];
     // Buildings Level
     Level *level_building = [[Level alloc] initWithTitle:@"Buildings"
-                                                    data:[@[element_building_0, element_building_1] mutableCopy]
+                                                    dataArray:[@[element_building_0, element_building_1] mutableCopy]
                                         addOptionEnabled:NO];
     
     // Elements for Hospitals
     Element *element_hospital_0 = [[Element alloc] initWithTitle:clientHospital.emails[0].title
-                                                         checked:_checkedByDefaults];
+                                                      dataObject:clientHospital.emails[0].dataObject
+                                   checked:_checkedByDefaults];
     Element *element_hospital_1 = [[Element alloc] initWithTitle:clientHospital.emails[1].title
-                                                         checked:_checkedByDefaults];
+                                                      dataObject:clientHospital.emails[1].dataObject
+                                   checked:_checkedByDefaults];
     // Hospital Level
     Level *level_hospital = [[Level alloc] initWithTitle:@"Hospitals"
-                                                    data:[@[element_hospital_0, element_hospital_1] mutableCopy]
+                                                    dataArray:[@[element_hospital_0, element_hospital_1] mutableCopy]
                                         addOptionEnabled:NO];
     
     /////////////////////////////
-    Element *element_department_0 = [[Element alloc] initWithTitle:@"hard_0@coded.org"
+    Element *element_department_0 = [[Element alloc] initWithTitle:email1.title
+                                                        dataObject:email1.dataObject
                                                            checked:_checkedByDefaults];
-    Element *element_department_1 = [[Element alloc] initWithTitle:@"hard_1@coded.org"
+    Element *element_department_1 = [[Element alloc] initWithTitle:email2.title
+                                                        dataObject:email2.dataObject
                                                            checked:_checkedByDefaults];
-    Element *element_department_1_0 = [[Element alloc] initWithTitle:@"hard_2@coded.org"
+    Element *element_department_1_0 = [[Element alloc] initWithTitle:email3.title
+                                                          dataObject:email3.dataObject
                                                              checked:_checkedByDefaults];
-    Element *element_department_1_1 = [[Element alloc] initWithTitle:@"hard_3@coded.org"
+    Element *element_department_1_1 = [[Element alloc] initWithTitle:email4.title
+                                                          dataObject:email4.dataObject
                                                              checked:_checkedByDefaults];
     
     
     Level *level_department_0 = [[Level alloc] initWithTitle:@"Sub Departments"
-                                                        data:[@[element_department_0, element_department_1] mutableCopy]
+                                                        dataArray:[@[element_department_0, element_department_1] mutableCopy]
                                             addOptionEnabled:YES];
     
     Level *level_department_1 = [[Level alloc] initWithTitle:@"Sub Departments"
-                                                        data:[@[element_department_1_0, element_department_1_1] mutableCopy]
+                                                        dataArray:[@[element_department_1_0, element_department_1_1] mutableCopy]
                                             addOptionEnabled:YES];
     
     // Department Level
     Level *level_department = [[Level alloc] initWithTitle:@"Departments"
-                                                      data:[@[level_department_0, level_department_1] mutableCopy]
+                                                      dataArray:[@[level_department_0, level_department_1] mutableCopy]
                                           addOptionEnabled:NO];
     
     
     Level *levelRoot = [[Level alloc] initWithTitle:@"Root Table"
-                                               data:[@[level_building, level_hospital, level_department] mutableCopy]
+                                               dataArray:[@[level_building, level_hospital, level_department] mutableCopy]
                                    addOptionEnabled:NO];
     
     return levelRoot;
@@ -118,7 +133,20 @@
 
 - (IBAction)awesomeButtonAction:(UIButton *)sender {
     NSLog(@"%@", self.rootLevel);
-    NSLog(@"Contacts are:\n%@", self.emailsAddedManually);
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Your Data"
+                                          message:[self.rootLevel description]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleCancel
+                                                     handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
+    
+//    NSLog(@"Contacts are:\n%@", self.emailsAddedManually);
 }
 
 
