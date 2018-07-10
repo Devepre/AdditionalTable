@@ -95,23 +95,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJJ-HU-vlV">
-                                <rect key="frame" x="50" y="214" width="275" height="303"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="F9F-pN-bIK">
-                                    <rect key="frame" x="0.0" y="0.0" width="275" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkY-8h-593">
-                                <rect key="frame" x="148.5" y="535" width="79" height="30"/>
+                                <rect key="frame" x="148" y="599" width="79" height="30"/>
                                 <state key="normal" title="Get Results"/>
                                 <connections>
                                     <action selector="awesomeButtonAction:" destination="kMN-VP-NT5" eventType="touchUpInside" id="3jA-c7-vFG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKj-1Q-yer">
-                                <rect key="frame" x="121" y="573" width="133" height="30"/>
+                                <rect key="frame" x="120.5" y="637" width="133" height="30"/>
                                 <state key="normal" title="Add From Contacts"/>
                                 <connections>
                                     <action selector="addFromContacts:" destination="kMN-VP-NT5" eventType="touchUpInside" id="1gz-Ir-9BG"/>
@@ -120,13 +120,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="leading" secondItem="rDv-fz-taK" secondAttribute="leading" id="0Qv-Ty-kqX"/>
                             <constraint firstItem="hkY-8h-593" firstAttribute="centerX" secondItem="FJJ-HU-vlV" secondAttribute="centerX" id="2ui-cH-B5v"/>
-                            <constraint firstItem="hkY-8h-593" firstAttribute="top" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="18" id="CMR-KB-Dhe"/>
-                            <constraint firstItem="rDv-fz-taK" firstAttribute="bottom" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="150" id="DjK-dB-h9e"/>
-                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="leading" secondItem="rDv-fz-taK" secondAttribute="leading" constant="50" id="Jjs-k3-7Ql"/>
+                            <constraint firstItem="hkY-8h-593" firstAttribute="top" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="20" id="7eW-Pg-HX3"/>
+                            <constraint firstItem="hkY-8h-593" firstAttribute="top" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="20" id="CMR-KB-Dhe"/>
+                            <constraint firstItem="rDv-fz-taK" firstAttribute="trailing" secondItem="FJJ-HU-vlV" secondAttribute="trailing" id="OPG-a7-o6b"/>
                             <constraint firstItem="OKj-1Q-yer" firstAttribute="centerX" secondItem="hkY-8h-593" secondAttribute="centerX" id="QB5-tz-Ja3"/>
-                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="top" secondItem="rDv-fz-taK" secondAttribute="top" constant="150" id="dBN-jS-fYL"/>
-                            <constraint firstItem="rDv-fz-taK" firstAttribute="trailing" secondItem="FJJ-HU-vlV" secondAttribute="trailing" constant="50" id="gOo-7j-y2N"/>
+                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="top" secondItem="rDv-fz-taK" secondAttribute="top" id="QHI-EV-YQB"/>
+                            <constraint firstItem="rDv-fz-taK" firstAttribute="bottom" secondItem="OKj-1Q-yer" secondAttribute="bottom" id="rcY-wn-Cp7"/>
                             <constraint firstItem="OKj-1Q-yer" firstAttribute="top" secondItem="hkY-8h-593" secondAttribute="bottom" constant="8" symbolic="YES" id="zBM-ad-MTC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rDv-fz-taK"/>
@@ -137,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSJ-LY-Tyr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="892"/>
+            <point key="canvasLocation" x="1056.8" y="891.90404797601207"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BhI-Sn-ztG">

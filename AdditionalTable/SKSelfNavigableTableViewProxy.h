@@ -10,10 +10,11 @@
 #import <UIKit/UIKit.h>
 
 #import "SKTableViewCellsMarkable.h"
+#import "SKLevelTableViewCell.h"
 #import "SKTitleProvider.h"
 #import "SKLevel.h"
 
-@interface SKSelfNavigableTableViewProxy : NSObject <UITableViewDelegate, UITableViewDataSource, SKTableViewCellsMarkable>
+@interface SKSelfNavigableTableViewProxy : NSObject <UITableViewDelegate, UITableViewDataSource, SKTableViewCellsMarkable, SKLevelTableViewCellDelegate>
 
 @property (strong, nonatomic) SKLevel *datasourceLevel;
 @property (strong, nonatomic) NSMutableArray<NSString *> *emailsAddedManually;
@@ -22,6 +23,6 @@
                       forTableView:(UITableView *)table NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
-- (void)markAllCells;
+- (void)markAllCellsForLevel:(SKLevel *)currentLevel;
 
 @end

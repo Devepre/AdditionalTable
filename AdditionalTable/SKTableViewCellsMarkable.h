@@ -10,6 +10,6 @@
 
 @protocol SKTableViewCellsMarkable <NSObject>
 
-- (void)markAllCells;
+- (void)markAllCellsForLevel;
 
 @end

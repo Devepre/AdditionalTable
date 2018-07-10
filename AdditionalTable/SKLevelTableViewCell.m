@@ -10,15 +10,10 @@
 
 @implementation SKLevelTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+
+- (IBAction)additionalButtonAction:(UIButton *)sender {
+    [self.delegate actionForLevelTableViewCell:self];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

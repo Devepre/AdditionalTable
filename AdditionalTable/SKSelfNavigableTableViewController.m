@@ -244,7 +244,7 @@
 
 
 - (void)markAllCells {
-    [self.selfNavigableTableProxy markAllCells];
+    [self.selfNavigableTableProxy markAllCellsForLevel:self.datasourceLevel];
 }
 
 #pragma mark - <SKContactPickerDelegate>

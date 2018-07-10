@@ -8,7 +8,6 @@
 
 #import "SKSelfNavigableTableViewProxy.h"
 #import "SKSelfNavigableTableViewController.h"
-#import "SKLevelTableViewCell.h"
 #import "SKLevel.h"
 #import "SKElement.h"
 
@@ -17,9 +16,12 @@
     NSString *kElementCellNibName;
     NSString *kLevelCellIdentifier;
     NSString *kElementCellIdentifier;
+    NSString *kLevelCellCheckAll;
+    NSString *kLevelCellCheckNone;
 }
 
 @property (weak, nonatomic) UITableView *tableView;
+@property (weak, nonatomic) id <SKLevelTableViewCellDelegate> delegate; 
 
 @end
 
@@ -46,6 +48,8 @@
     kElementCellIdentifier =    @"ElementCell";
     kLevelCellNibName =         @"SKLevelTableViewCell";
     kElementCellNibName =       @"SKElementTableViewCell";
+    kLevelCellCheckAll =        @"Check All";
+    kLevelCellCheckNone =       @"Check None";
     
     NSLog(@"%@", self.datasourceLevel);
 }
@@ -77,7 +81,7 @@
         [tableView registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:cellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
-
+    
     // Populating cell with data according to the Protocol
     id<SKTitleProvider> currentObject = [self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     cell.mainTextLabel.text = [currentObject title];
@@ -87,10 +91,21 @@
         SKElement *currentElement = (SKElement *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
         cell.accessoryType = currentElement.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else {
+        // Setting delegate in order to receive info from Cell
+        cell.delegate = self;
+        
+        // Setting title for Button
+//        SKLevel *selectedLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
+//        NSString *buttonNewTitle = [selectedLevel isAnyCheckedIn] ? kLevelCellCheckNone : kLevelCellCheckAll;
+//        [cell.additionalButton setTitle:buttonNewTitle
+//                                             forState:UIControlStateNormal];
+        [self setTitleForLevelTableViewCellAdditionalButton:cell
+                                                atIndexPath:indexPath];
+        
         // Setting counters
         NSUInteger total = 0;
         NSUInteger numberOfCheckedElements = [((SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row]) numberOfCheckedElementsWithTotal:&total];
-        NSString *counterString = [NSString stringWithFormat:@"%lu//%lu", (unsigned long)numberOfCheckedElements, (unsigned long)total];
+        NSString *counterString = [NSString stringWithFormat:@"%lu//%lu selected", (unsigned long)numberOfCheckedElements, (unsigned long)total];
         cell.additionalInfoTextLabel.text = counterString;
     }
     
@@ -149,10 +164,37 @@
     }
 }
 
-- (void)markAllCells {
-    [self.datasourceLevel isAnyCheckedIn] ? [self.datasourceLevel checkOut] : [self.datasourceLevel checkIn];
+- (void)markAllCellsForLevel:(SKLevel *)selectedLevel {
+    [selectedLevel isAnyCheckedIn] ? [selectedLevel checkOut] : [selectedLevel checkIn];
     [self.tableView reloadData];
 }
 
+
+#pragma mark - <SKLevelTableViewCellDelegate>
+
+- (void)actionForLevelTableViewCell:(SKLevelTableViewCell *)levelTableViewCell {
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForCell:levelTableViewCell];
+    SKLevel *selectedLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:selectedIndexPath.row];
+
+    [self setTitleForLevelTableViewCellAdditionalButton:levelTableViewCell
+                                            atIndexPath:nil];
+
+    [self markAllCellsForLevel:selectedLevel];
+}
+
+
+- (void)setTitleForLevelTableViewCellAdditionalButton:(SKLevelTableViewCell *)cell
+                                          atIndexPath:(NSIndexPath *)indexPath {
+    // If indexPath is unknown need to get it
+    // but need to path indexPath explicitly
+    // from method tableView:cellForRowAtIndexPath:
+    if (!indexPath) {
+        indexPath = [self.tableView indexPathForCell:cell];
+    }
+    SKLevel *selectedLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
+    NSString *buttonNewTitle = [selectedLevel isAnyCheckedIn] ? kLevelCellCheckNone : kLevelCellCheckAll;
+    [cell.additionalButton setTitle:buttonNewTitle
+                                         forState:UIControlStateNormal];
+}
 
 @end

@@ -8,9 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SKLevelTableViewCellDelegate;
+
 @interface SKLevelTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *mainTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *additionalInfoTextLabel;
+@property (weak, nonatomic) IBOutlet UIButton *additionalButton;
+
+@property (weak, nonatomic) id <SKLevelTableViewCellDelegate> delegate;
+
+- (IBAction)additionalButtonAction:(UIButton *)sender;
+
+@end
+
+
+@protocol SKLevelTableViewCellDelegate <NSObject>
+
+@optional
+- (void)actionForLevelTableViewCell:(SKLevelTableViewCell *)levelTableViewCell;
 
 @end
