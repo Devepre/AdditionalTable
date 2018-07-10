@@ -8,7 +8,11 @@
 
 #import "SKTableSourceItem.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wprotocol"
+
 @implementation SKTableSourceItem
 
+#pragma GCC diagnostic pop
 
 @end
