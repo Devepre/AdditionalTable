@@ -25,13 +25,11 @@
     NSString *kAlreadyPresentString;
 }
 
-@property (strong, nonatomic) SKSelfNavigableTableViewProxy *selfNavigableTableProxy;
 @property (strong, nonatomic) NSMutableArray<UIBarButtonItem *> *rightBarButtonItems;
-
-@property (strong, nonatomic) UIAlertController *addManuallyAlertController;
-@property (strong, nonatomic) NSString *contactPickerUserInputString;
-
-@property (strong, nonatomic) NSMutableSet<NSString *> *emailIDs;
+@property (strong, nonatomic) UIAlertController                 *addManuallyAlertController;
+@property (strong, nonatomic) NSString                          *contactPickerUserInputString;
+@property (strong, nonatomic) SKSelfNavigableTableViewProxy     *selfNavigableTableViewProxy;
+@property (strong, nonatomic) NSMutableSet<NSString *>          *emailIDs;
 
 @end
 
@@ -44,7 +42,7 @@
     [super viewDidLoad];
     
     [self initDefaults];
-    [self attachTableProxy];
+    [self attachTableViewProxy];
     [self attachRightBarButtons];
 }
 
@@ -59,8 +57,6 @@
 
 
 - (void)initDefaults {
-    NSLog(@"%s", __func__);
-    
     // TODO Can be moved to instance variables in order to be initialized only once
     kAddFromcontactsString =     @"Add email from Contacts";
     kAddManuallyString =         @"Enter email manually";
@@ -76,14 +72,16 @@
 }
 
 
-- (void)attachTableProxy {
-    self.selfNavigableTableProxy = [[SKSelfNavigableTableViewProxy alloc]
-                                    initWithDatasource:self.datasourceLevel
-                                    forTableView:self.tableView];
-    self.selfNavigableTableProxy.tableViewControllerDelegate = self;
+- (void)attachTableViewProxy {
+    self.selfNavigableTableViewProxy = [[SKSelfNavigableTableViewProxy alloc]
+                                        initWithDatasource:self.datasourceLevel
+                                        forTableView:self.tableView];
+    // Delegation used to callback when Model is changing
+    // in order to change checkAllButton title accordingly
+    self.selfNavigableTableViewProxy.tableViewControllerDelegate = self;
     
-    self.tableView.delegate = self.selfNavigableTableProxy;
-    self.tableView.dataSource = self.selfNavigableTableProxy;
+    self.tableView.delegate = self.selfNavigableTableViewProxy;
+    self.tableView.dataSource = self.selfNavigableTableViewProxy;
 }
 
 
@@ -250,7 +248,7 @@
 
 
 - (void)markAllCells {
-    [self.selfNavigableTableProxy markAllCellsForLevel:self.datasourceLevel];
+    [self.selfNavigableTableViewProxy markAllCellsForLevel:self.datasourceLevel];
     self.checkAllButton.title = [self.datasourceLevel getTitleForCheckInOut];
 }
 

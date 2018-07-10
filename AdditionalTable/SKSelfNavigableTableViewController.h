@@ -11,14 +11,13 @@
 #import <Contacts/Contacts.h>
 
 #import "SKContactPickerViewController.h"
+#import "SKLevel.h"
 #import "SKTitleProvider.h"
 
-#import "SKLevel.h"
+@interface SKSelfNavigableTableViewController : UIViewController <SKContactPickerDelegate>
 
-@interface SKSelfNavigableTableViewController : UIViewController<SKContactPickerDelegate>
-
-@property (strong, nonatomic) SKLevel *datasourceLevel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonnull) UIBarButtonItem *checkAllButton;
+@property (strong, nonatomic) SKLevel            *datasourceLevel;
+@property (strong, nonatomic) UIBarButtonItem    *checkAllButton;
 
 @end
