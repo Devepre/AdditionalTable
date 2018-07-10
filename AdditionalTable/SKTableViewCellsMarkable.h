@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+@class SKLevel;
 
 @protocol SKTableViewCellsMarkable <NSObject>
 
-- (void)markAllCellsForLevel;
+- (void)markAllCellsForLevel:(SKLevel *)selectedLevel;
 
 @end
