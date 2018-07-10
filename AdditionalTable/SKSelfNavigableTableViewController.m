@@ -90,21 +90,23 @@
 - (void)attachRightBarButtons {
     self.rightBarButtonItems = [[NSMutableArray alloc] init];
     
-    // Check All Button item
-    NSString *buttonNewTitle = [self.datasourceLevel getTitleForCheckInOut];
-    self.checkAllButton = [[UIBarButtonItem alloc]
-                                       initWithTitle:buttonNewTitle
-                                       style:UIBarButtonItemStylePlain
-                                       target:self
-                                       action:@selector(markAllCells)];
-    [self.rightBarButtonItems addObject:self.checkAllButton];
-    
     // Add New Button item
     if (self.datasourceLevel.isAddOptionEnabled) {
         UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                       initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                       target:self action:@selector(addNewObject:)];
         [self.rightBarButtonItems addObject:addButton];
+    }
+    
+    // Check All Button item
+    if ([[self.datasourceLevel.dataArray firstObject] isKindOfClass:SKElement.class]) {
+        NSString *buttonNewTitle = [self.datasourceLevel getTitleForCheckInOut];
+        self.checkAllButton = [[UIBarButtonItem alloc]
+                               initWithTitle:buttonNewTitle
+                               style:UIBarButtonItemStylePlain
+                               target:self
+                               action:@selector(markAllCells)];
+        [self.rightBarButtonItems addObject:self.checkAllButton];
     }
     
     [self.navigationItem setRightBarButtonItems:self.rightBarButtonItems];
