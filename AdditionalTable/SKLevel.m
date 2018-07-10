@@ -120,4 +120,21 @@
 }
 
 
+- (BOOL)isAnyCheckedIn {
+    BOOL result = NO;
+    for (SKTableSourceItem *object in self.dataArray) {
+        if ([object isKindOfClass:SKLevel.class]) {
+            result = [object isAnyCheckedIn];
+        } else if ([object isKindOfClass:SKElement.class]) {
+            if (((SKElement *)object).checked) {
+                result = YES;
+                break;
+            }
+        }
+    }
+    
+    return result;
+}
+
+
 @end

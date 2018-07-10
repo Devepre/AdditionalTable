@@ -14,5 +14,6 @@
 
 - (void)checkIn;
 - (void)checkOut;
+- (BOOL)isAnyCheckedIn;
 
 @end

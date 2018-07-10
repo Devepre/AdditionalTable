@@ -150,7 +150,7 @@
 }
 
 - (void)markAllCellsChecked {
-    [self.datasourceLevel checkIn];
+    [self.datasourceLevel isAnyCheckedIn] ? [self.datasourceLevel checkOut] : [self.datasourceLevel checkIn];
     [self.tableView reloadData];
 }
 
