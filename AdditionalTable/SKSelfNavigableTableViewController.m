@@ -92,7 +92,7 @@
     // Check All Button item
     UIBarButtonItem *checkAllButton = [[UIBarButtonItem alloc]
                                        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                       target:self action:@selector(markAllCellsChecked)];
+                                       target:self action:@selector(markAllCells)];
     [self.rightBarButtonItems addObject:checkAllButton];
     
     // Add New Button item
@@ -217,7 +217,7 @@
                                                  predicateWithFormat:
                                                  @"(emailAddresses.@count > 0) AND (NOT ALL emailAddresses.identifier IN %@)",
                                                  self.emailIDs];
-    // In order to enable selection of contact only if one email addres is present
+    // In order to enable selection of contact only if one email address is present
     contactPicker.predicateForSelectionOfContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count == 1"];
     
     [self presentViewController:contactPicker animated:YES completion:nil];
@@ -243,8 +243,8 @@
 }
 
 
-- (void)markAllCellsChecked {
-    [self.selfNavigableTableProxy markAllCellsChecked];
+- (void)markAllCells {
+    [self.selfNavigableTableProxy markAllCells];
 }
 
 #pragma mark - <SKContactPickerDelegate>

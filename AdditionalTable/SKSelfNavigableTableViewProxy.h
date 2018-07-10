@@ -8,18 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+#import "SKTableViewCellsMarkable.h"
 #import "SKTitleProvider.h"
 #import "SKLevel.h"
 
-@interface SKSelfNavigableTableViewProxy : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface SKSelfNavigableTableViewProxy : NSObject <UITableViewDelegate, UITableViewDataSource, SKTableViewCellsMarkable>
 
 @property (strong, nonatomic) SKLevel *datasourceLevel;
 @property (strong, nonatomic) NSMutableArray<NSString *> *emailsAddedManually;
 
 - (instancetype)initWithDatasource:(SKLevel *)datasourceLevel
-                      forTableView:(UITableView *)table  NS_DESIGNATED_INITIALIZER;
+                      forTableView:(UITableView *)table NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
-- (void)markAllCellsChecked; //TODO protocol
+- (void)markAllCells;
 
 @end

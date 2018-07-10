@@ -69,6 +69,7 @@
 		47D78DA420EE1F9C00C64084 /* TRAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRAViewController.m; sourceTree = "<group>"; };
 		47E19DC420F3A3050073818F /* NSString+SKEmailValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SKEmailValidation.h"; sourceTree = "<group>"; };
 		47E19DC520F3A3050073818F /* NSString+SKEmailValidation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SKEmailValidation.m"; sourceTree = "<group>"; };
+		47E19DC820F4C6C30073818F /* SKTableViewCellsMarkable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKTableViewCellsMarkable.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +162,7 @@
 		47D78D9C20ED24E700C64084 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				47E19DC820F4C6C30073818F /* SKTableViewCellsMarkable.h */,
 				472B065220ED122C004D09CA /* SKTitleProvider.h */,
 				246F5FCF20F237EA00ED0ED0 /* SKCheckInOutAvailable.h */,
 				246F5FCC20F2358C00ED0ED0 /* SKTableSourceItem.h */,
