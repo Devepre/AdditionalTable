@@ -12,7 +12,6 @@
 #import "SKLevel.h"
 #import "SKElement.h"
 #import "NSString+SKEmailValidation.h"
-#import "SKContactPickerViewController.h"
 
 @interface SKSelfNavigableTableViewController () {
     NSString *kAddFromcontactsString;
@@ -241,7 +240,7 @@
     [self.selfNavigableTableProxy markAllCellsChecked];
 }
 
-#pragma mark - <CNContactPickerDelegate>
+#pragma mark - <SKContactPickerDelegate>
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     self.contactPickerUserInputString = [contact.emailAddresses firstObject].value;

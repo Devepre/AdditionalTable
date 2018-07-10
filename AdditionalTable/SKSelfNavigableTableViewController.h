@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <ContactsUI/ContactsUI.h>
 #import <Contacts/Contacts.h>
+
+#import "SKContactPickerViewController.h"
 #import "SKTitleProvider.h"
+
 #import "SKLevel.h"
 
-@interface SKSelfNavigableTableViewController : UIViewController<CNContactPickerDelegate>
+@interface SKSelfNavigableTableViewController : UIViewController<SKContactPickerDelegate>
 
 @property (strong, nonatomic) SKLevel *datasourceLevel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

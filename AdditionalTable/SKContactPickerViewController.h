@@ -8,7 +8,21 @@
 
 #import <ContactsUI/ContactsUI.h>
 
+@protocol SKContactPickerDelegate;
+
 @interface SKContactPickerViewController : CNContactPickerViewController
 
+@property (weak, nonatomic, nullable) id <CNContactPickerDelegate, SKContactPickerDelegate> delegate;
+
+@end
+
+
+@protocol SKContactPickerDelegate <CNContactPickerDelegate>
+
+@required
+- (void)contactPicker:(SKContactPickerViewController *)picker viewDidDisappear:(BOOL)animated;
+
+@optional
+- (void)contactPicker:(SKContactPickerViewController *)picker viewWillDisappear:(BOOL)animated;
 
 @end

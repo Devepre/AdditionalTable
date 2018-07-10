@@ -14,31 +14,26 @@
 
 @implementation SKContactPickerViewController
 
+@dynamic delegate;
 
 - (void)viewWillDisappear:(BOOL)animated {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [super viewWillDisappear:animated];
+    
     SEL selector = @selector(contactPicker:viewWillDisappear:);
     if ([self.delegate respondsToSelector:selector]) {
-        [self.delegate performSelector:selector
-                            withObject:self
-                            withObject:[NSNumber numberWithBool:animated]];
-#pragma clang diagnostic pop
+        [self.delegate contactPicker:self
+                   viewWillDisappear:animated];
     }
 }
 
 
 - (void)viewDidDisappear:(BOOL)animated {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [super viewDidDisappear:animated];
+    
     SEL selector = @selector(contactPicker:viewDidDisappear:);
     if ([self.delegate respondsToSelector:selector]) {
-        [self.delegate performSelector:selector
-                            withObject:self
-                            withObject:[NSNumber numberWithBool:animated]];
-#pragma clang diagnostic pop
+        [self.delegate contactPicker:self
+                    viewDidDisappear:animated];
     }
 }
 
