@@ -80,6 +80,7 @@
     self.selfNavigableTableProxy = [[SKSelfNavigableTableViewProxy alloc]
                                     initWithDatasource:self.datasourceLevel
                                     forTableView:self.tableView];
+    self.selfNavigableTableProxy.tableViewControllerDelegate = self;
     
     self.tableView.delegate = self.selfNavigableTableProxy;
     self.tableView.dataSource = self.selfNavigableTableProxy;
@@ -90,10 +91,13 @@
     self.rightBarButtonItems = [[NSMutableArray alloc] init];
     
     // Check All Button item
-    UIBarButtonItem *checkAllButton = [[UIBarButtonItem alloc]
-                                       initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                       target:self action:@selector(markAllCells)];
-    [self.rightBarButtonItems addObject:checkAllButton];
+    NSString *buttonNewTitle = [self.datasourceLevel getTitleForCheckInOut];
+    self.checkAllButton = [[UIBarButtonItem alloc]
+                                       initWithTitle:buttonNewTitle
+                                       style:UIBarButtonItemStylePlain
+                                       target:self
+                                       action:@selector(markAllCells)];
+    [self.rightBarButtonItems addObject:self.checkAllButton];
     
     // Add New Button item
     if (self.datasourceLevel.isAddOptionEnabled) {
@@ -245,6 +249,7 @@
 
 - (void)markAllCells {
     [self.selfNavigableTableProxy markAllCellsForLevel:self.datasourceLevel];
+    self.checkAllButton.title = [self.datasourceLevel getTitleForCheckInOut];
 }
 
 #pragma mark - <SKContactPickerDelegate>

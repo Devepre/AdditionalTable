@@ -19,5 +19,6 @@
 
 @property (strong, nonatomic) SKLevel *datasourceLevel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonnull) UIBarButtonItem *checkAllButton;
 
 @end

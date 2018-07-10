@@ -9,6 +9,13 @@
 #import "SKLevel.h"
 #import "SKElement.h"
 
+@interface SKLevel() {
+    NSString *kLevelCellCheckAll;
+    NSString *kLevelCellCheckNone;
+}
+
+@end
+
 @implementation SKLevel
 
 
@@ -20,6 +27,9 @@
         _title = title;
         _dataArray = dataArray;
         _addOpitonEnabled = addOptionEnabled;
+        
+        kLevelCellCheckAll =        @"Check All";
+        kLevelCellCheckNone =       @"Check None";
     }
 
     return self;
@@ -132,6 +142,13 @@
             }
         }
     }
+    
+    return result;
+}
+
+
+- (NSString *)getTitleForCheckInOut {
+    NSString *result = [self isAnyCheckedIn] ? kLevelCellCheckNone : kLevelCellCheckAll;
     
     return result;
 }

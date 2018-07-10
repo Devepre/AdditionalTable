@@ -24,5 +24,6 @@
 
 - (void)checkIn;
 - (BOOL)addItem:(nonnull SKTableSourceItem *)item;
+- (NSString *)getTitleForCheckInOut;
 
 @end

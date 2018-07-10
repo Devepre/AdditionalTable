@@ -95,10 +95,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJJ-HU-vlV">
-                                <rect key="frame" x="0.0" y="64" width="375" height="515"/>
+                                <rect key="frame" x="20" y="84" width="335" height="495"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="F9F-pN-bIK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
@@ -120,13 +120,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="leading" secondItem="rDv-fz-taK" secondAttribute="leading" id="0Qv-Ty-kqX"/>
+                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="leading" secondItem="rDv-fz-taK" secondAttribute="leading" constant="20" id="0Qv-Ty-kqX"/>
                             <constraint firstItem="hkY-8h-593" firstAttribute="centerX" secondItem="FJJ-HU-vlV" secondAttribute="centerX" id="2ui-cH-B5v"/>
                             <constraint firstItem="hkY-8h-593" firstAttribute="top" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="20" id="7eW-Pg-HX3"/>
                             <constraint firstItem="hkY-8h-593" firstAttribute="top" secondItem="FJJ-HU-vlV" secondAttribute="bottom" constant="20" id="CMR-KB-Dhe"/>
-                            <constraint firstItem="rDv-fz-taK" firstAttribute="trailing" secondItem="FJJ-HU-vlV" secondAttribute="trailing" id="OPG-a7-o6b"/>
+                            <constraint firstItem="rDv-fz-taK" firstAttribute="trailing" secondItem="FJJ-HU-vlV" secondAttribute="trailing" constant="20" id="OPG-a7-o6b"/>
                             <constraint firstItem="OKj-1Q-yer" firstAttribute="centerX" secondItem="hkY-8h-593" secondAttribute="centerX" id="QB5-tz-Ja3"/>
-                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="top" secondItem="rDv-fz-taK" secondAttribute="top" id="QHI-EV-YQB"/>
+                            <constraint firstItem="FJJ-HU-vlV" firstAttribute="top" secondItem="rDv-fz-taK" secondAttribute="top" constant="20" id="QHI-EV-YQB"/>
                             <constraint firstItem="rDv-fz-taK" firstAttribute="bottom" secondItem="OKj-1Q-yer" secondAttribute="bottom" id="rcY-wn-Cp7"/>
                             <constraint firstItem="OKj-1Q-yer" firstAttribute="top" secondItem="hkY-8h-593" secondAttribute="bottom" constant="8" symbolic="YES" id="zBM-ad-MTC"/>
                         </constraints>

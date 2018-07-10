@@ -16,12 +16,10 @@
     NSString *kElementCellNibName;
     NSString *kLevelCellIdentifier;
     NSString *kElementCellIdentifier;
-    NSString *kLevelCellCheckAll;
-    NSString *kLevelCellCheckNone;
 }
 
 @property (weak, nonatomic) UITableView *tableView;
-@property (weak, nonatomic) id <SKLevelTableViewCellDelegate> delegate; 
+@property (weak, nonatomic) id <SKLevelTableViewCellDelegate> delegate;
 
 @end
 
@@ -48,8 +46,6 @@
     kElementCellIdentifier =    @"ElementCell";
     kLevelCellNibName =         @"SKLevelTableViewCell";
     kElementCellNibName =       @"SKElementTableViewCell";
-    kLevelCellCheckAll =        @"Check All";
-    kLevelCellCheckNone =       @"Check None";
     
     NSLog(@"%@", self.datasourceLevel);
 }
@@ -94,11 +90,7 @@
         // Setting delegate in order to receive info from Cell
         cell.delegate = self;
         
-        // Setting title for Button
-//        SKLevel *selectedLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
-//        NSString *buttonNewTitle = [selectedLevel isAnyCheckedIn] ? kLevelCellCheckNone : kLevelCellCheckAll;
-//        [cell.additionalButton setTitle:buttonNewTitle
-//                                             forState:UIControlStateNormal];
+        // Setting title for the Button
         [self setTitleForLevelTableViewCellAdditionalButton:cell
                                                 atIndexPath:indexPath];
         
@@ -108,6 +100,11 @@
         NSString *counterString = [NSString stringWithFormat:@"%lu//%lu selected", (unsigned long)numberOfCheckedElements, (unsigned long)total];
         cell.additionalInfoTextLabel.text = counterString;
     }
+    
+    // Updating Title for the Navigation button
+    // Should be updated if model is changed only
+    // but not for every cell getting - can be optimized
+    self.tableViewControllerDelegate.checkAllButton.title = [self.datasourceLevel getTitleForCheckInOut];
     
     return cell;
 }
@@ -145,6 +142,9 @@
     // Hadnling table UI changes manually instead of reloading data
     selectedCell.accessoryType = isCellSelected ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Updating Title for the Navigation button
+    self.tableViewControllerDelegate.checkAllButton.title = [self.datasourceLevel getTitleForCheckInOut];
 }
 
 
@@ -192,9 +192,9 @@
         indexPath = [self.tableView indexPathForCell:cell];
     }
     SKLevel *selectedLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
-    NSString *buttonNewTitle = [selectedLevel isAnyCheckedIn] ? kLevelCellCheckNone : kLevelCellCheckAll;
+    NSString *buttonNewTitle = [selectedLevel getTitleForCheckInOut];
     [cell.additionalButton setTitle:buttonNewTitle
-                                         forState:UIControlStateNormal];
+                           forState:UIControlStateNormal];
 }
 
 @end

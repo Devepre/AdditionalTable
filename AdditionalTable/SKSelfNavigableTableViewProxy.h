@@ -14,10 +14,12 @@
 #import "SKTitleProvider.h"
 #import "SKLevel.h"
 
+#import "SKSelfNavigableTableViewController.h"
+
 @interface SKSelfNavigableTableViewProxy : NSObject <UITableViewDelegate, UITableViewDataSource, SKTableViewCellsMarkable, SKLevelTableViewCellDelegate>
 
 @property (strong, nonatomic) SKLevel *datasourceLevel;
-@property (strong, nonatomic) NSMutableArray<NSString *> *emailsAddedManually;
+@property (weak, nonatomic) SKSelfNavigableTableViewController *tableViewControllerDelegate;
 
 - (instancetype)initWithDatasource:(SKLevel *)datasourceLevel
                       forTableView:(UITableView *)table NS_DESIGNATED_INITIALIZER;
