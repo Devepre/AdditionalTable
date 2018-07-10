@@ -12,6 +12,7 @@
 #import "SKLevel.h"
 #import "SKElement.h"
 #import "NSString+SKEmailValidation.h"
+#import "SKContactPickerViewController.h"
 
 @interface SKSelfNavigableTableViewController () {
     NSString *kAddFromcontactsString;
@@ -29,6 +30,7 @@
 @property (strong, nonatomic) NSMutableArray<UIBarButtonItem *> *rightBarButtonItems;
 
 @property (strong, nonatomic) UIAlertController *addManuallyAlertController;
+@property (strong, nonatomic) NSString *contactPickerUserInputString;
 
 @end
 
@@ -205,13 +207,12 @@
 #pragma mark - Additional Methods
 
 - (void)addFromContacts {
-    CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc] init];
+    SKContactPickerViewController *contactPicker = [[SKContactPickerViewController alloc] init];
+    contactPicker.delegate = self;
     contactPicker.displayedPropertyKeys = @[CNContactEmailAddressesKey];
     contactPicker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
-    
     // In order to enable selection of contact only if one email addres is present
     contactPicker.predicateForSelectionOfContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count == 1"];
-    contactPicker.delegate = self;
     
     [self presentViewController:contactPicker animated:YES completion:nil];
 }
@@ -243,24 +244,17 @@
 #pragma mark - <CNContactPickerDelegate>
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    NSString *userInputString = [contact.emailAddresses firstObject].value;
-    // Need to dismiss it manually in order to be able
-    // to present UIAlertController from tableAddItem: check
-    [picker dismissViewControllerAnimated:YES
-                               completion:^{
-                                   [self tableAddItem:userInputString];
-                               }];
+    self.contactPickerUserInputString = [contact.emailAddresses firstObject].value;
 }
 
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
-    NSString *userInputString = contactProperty.value;
-    // Need to dismiss it manually in order to be able
-    // to present UIAlertController from tableAddItem: check
-    [picker dismissViewControllerAnimated:YES
-                               completion:^{
-                                    [self tableAddItem:userInputString];
-                               }];
+    self.contactPickerUserInputString = contactProperty.value;
+}
+
+
+- (void)contactPicker:(SKContactPickerViewController *)picker viewDidDisappear:(NSNumber *)animated {
+    [self tableAddItem:self.contactPickerUserInputString];
 }
 
 

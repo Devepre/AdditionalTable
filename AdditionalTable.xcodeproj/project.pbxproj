@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		246F5FCE20F2358C00ED0ED0 /* SKTableSourceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 246F5FCD20F2358C00ED0ED0 /* SKTableSourceItem.m */; };
+		249CEC3820F486DA00E3AD09 /* SKContactPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249CEC3720F486DA00E3AD09 /* SKContactPickerViewController.m */; };
 		472B062B20ECF750004D09CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B062A20ECF750004D09CA /* AppDelegate.m */; };
 		472B062E20ECF750004D09CA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 472B062D20ECF750004D09CA /* ViewController.m */; };
 		472B063120ECF750004D09CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 472B062F20ECF750004D09CA /* Main.storyboard */; };
@@ -32,6 +33,8 @@
 		246F5FCC20F2358C00ED0ED0 /* SKTableSourceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKTableSourceItem.h; sourceTree = "<group>"; };
 		246F5FCD20F2358C00ED0ED0 /* SKTableSourceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKTableSourceItem.m; sourceTree = "<group>"; };
 		246F5FCF20F237EA00ED0ED0 /* SKCheckInOutAvailable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKCheckInOutAvailable.h; sourceTree = "<group>"; };
+		249CEC3620F486DA00E3AD09 /* SKContactPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKContactPickerViewController.h; sourceTree = "<group>"; };
+		249CEC3720F486DA00E3AD09 /* SKContactPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKContactPickerViewController.m; sourceTree = "<group>"; };
 		472B062620ECF750004D09CA /* AdditionalTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdditionalTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		472B062920ECF750004D09CA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		472B062A20ECF750004D09CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 				472B064020ECFA5C004D09CA /* SKSelfNavigableTableViewController.m */,
 				47E19DC420F3A3050073818F /* NSString+SKEmailValidation.h */,
 				47E19DC520F3A3050073818F /* NSString+SKEmailValidation.m */,
+				249CEC3620F486DA00E3AD09 /* SKContactPickerViewController.h */,
+				249CEC3720F486DA00E3AD09 /* SKContactPickerViewController.m */,
 				47D78D9C20ED24E700C64084 /* Models */,
 				478B780820ED24A3007EBD4B /* Custom Views */,
 				472B065C20ED23FC004D09CA /* BusinessModels */,
@@ -253,6 +258,7 @@
 				472B062E20ECF750004D09CA /* ViewController.m in Sources */,
 				472B063920ECF752004D09CA /* main.m in Sources */,
 				472B064520ECFBBB004D09CA /* SKLevelTableViewCell.m in Sources */,
+				249CEC3820F486DA00E3AD09 /* SKContactPickerViewController.m in Sources */,
 				472B065B20ED1B08004D09CA /* ContactItem.m in Sources */,
 				472B065520ED1373004D09CA /* SKLevel.m in Sources */,
 				472B062B20ECF750004D09CA /* AppDelegate.m in Sources */,
