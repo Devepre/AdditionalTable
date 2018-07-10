@@ -31,6 +31,8 @@
 @property (strong, nonatomic) UIAlertController *addManuallyAlertController;
 @property (strong, nonatomic) NSString *contactPickerUserInputString;
 
+@property (strong, nonatomic) NSMutableSet<NSString *> *emailIDs;
+
 @end
 
 @implementation SKSelfNavigableTableViewController
@@ -69,6 +71,8 @@
     kEmailPlaceHolder =          @"example@domain.com";
     kDuplicateString =           @"Duplicate entry";
     kAlreadyPresentString =      @"This email is already present in the sender's list";
+    
+    self.emailIDs = [[NSMutableSet alloc] init];
 }
 
 
@@ -209,7 +213,10 @@
     SKContactPickerViewController *contactPicker = [[SKContactPickerViewController alloc] init];
     contactPicker.delegate = self;
     contactPicker.displayedPropertyKeys = @[CNContactEmailAddressesKey];
-    contactPicker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count > 0"];
+    contactPicker.predicateForEnablingContact = [NSPredicate
+                                                 predicateWithFormat:
+                                                 @"(emailAddresses.@count > 0) AND (NOT ALL emailAddresses.identifier IN %@)",
+                                                 self.emailIDs];
     // In order to enable selection of contact only if one email addres is present
     contactPicker.predicateForSelectionOfContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count == 1"];
     
@@ -243,17 +250,24 @@
 #pragma mark - <SKContactPickerDelegate>
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
+    NSString *propertyID = [contact.emailAddresses firstObject].identifier;
+    [self.emailIDs addObject:propertyID];
     self.contactPickerUserInputString = [contact.emailAddresses firstObject].value;
 }
 
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
+    NSString *propertyID = contactProperty.identifier;
+    [self.emailIDs addObject:propertyID];
     self.contactPickerUserInputString = contactProperty.value;
 }
 
 
-- (void)contactPicker:(SKContactPickerViewController *)picker viewDidDisappear:(NSNumber *)animated {
-    [self tableAddItem:self.contactPickerUserInputString];
+- (void)contactPicker:(SKContactPickerViewController *)picker viewDidDisappear:(BOOL)animated {
+    if (self.contactPickerUserInputString) {
+        [self tableAddItem:self.contactPickerUserInputString];
+        self.contactPickerUserInputString = nil;
+    }
 }
 
 
