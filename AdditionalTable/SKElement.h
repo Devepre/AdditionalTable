@@ -11,8 +11,8 @@
 
 @interface SKElement : SKTableSourceItem
 
-@property (strong, nonatomic) NSString *title;
-@property (weak, nonatomic) NSObject *dataObject;
+@property (strong, nonatomic) NSString              *title;
+@property (weak, nonatomic) NSObject                *dataObject;
 @property (assign, nonatomic, getter=isChecked) BOOL checked;
 
 - (instancetype)init NS_UNAVAILABLE;

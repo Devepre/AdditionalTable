@@ -11,13 +11,13 @@
 
 @interface SKLevel : SKTableSourceItem
 
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSMutableArray<SKTableSourceItem *> *dataArray;
-@property (assign, nonatomic, getter=isAddOptionEnabled) BOOL addOpitonEnabled;
+@property (strong, nonatomic) NSString                            *title;
+@property (strong, nonatomic) NSMutableArray <SKTableSourceItem *> *dataArray;
+@property (assign, nonatomic, getter=isAddOptionEnabled) BOOL      addOpitonEnabled;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithTitle:(NSString *)title
-                         dataArray:(NSMutableArray<SKTableSourceItem *> *)dataArray
+                         dataArray:(NSMutableArray <SKTableSourceItem *> *)dataArray
              addOptionEnabled:(BOOL)addOptionEnabled NS_DESIGNATED_INITIALIZER;
 
 - (NSUInteger)numberOfCheckedElementsWithTotal:(NSUInteger *)total;

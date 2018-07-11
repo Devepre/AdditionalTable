@@ -68,14 +68,17 @@
     kDuplicateString =           @"Duplicate entry";
     kAlreadyPresentString =      @"This email is already present in the sender's list";
     
+    // Storage for already added emails from device Contacts
+    // Allows to track if email is already added
     self.emailIDs = [[NSMutableSet alloc] init];
 }
 
 
 - (void)attachTableViewProxy {
-    self.selfNavigableTableViewProxy = [[SKSelfNavigableTableViewProxy alloc]
-                                        initWithDatasource:self.datasourceLevel
-                                        forTableView:self.tableView];
+    self.selfNavigableTableViewProxy = [[SKSelfNavigableTableViewProxy alloc] initWithDatasource:self.datasourceLevel
+                                                                                    forTableView:self.tableView
+                                                                                  storybaordname:@"Main"
+                                                                    selfViewControllerIdentifier:@"MagicViewController"];
     // Delegation used to callback when Model is changing
     // in order to change checkAllButton title accordingly
     self.selfNavigableTableViewProxy.tableViewControllerDelegate = self;
@@ -97,10 +100,11 @@
     }
     
     // Check All Button item
+    // Depends on first object type - mixes are not allowed for now
     if ([[self.datasourceLevel.dataArray firstObject] isKindOfClass:SKElement.class]) {
-        NSString *buttonNewTitle = [self.datasourceLevel getTitleForCheckInOut];
+        NSString *buttonTitle = [self.datasourceLevel getTitleForCheckInOut];
         self.checkAllButton = [[UIBarButtonItem alloc]
-                               initWithTitle:buttonNewTitle
+                               initWithTitle:buttonTitle
                                style:UIBarButtonItemStylePlain
                                target:self
                                action:@selector(markAllCells)];
@@ -119,33 +123,35 @@
                                           message:nil
                                           preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *contactsAction = [UIAlertAction
-                                     actionWithTitle:kAddFromcontactsString
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * _Nonnull action) {
-                                         [self addFromContacts];
-                                     }];
+    UIAlertAction *addFromContactsAction = [UIAlertAction
+                                            actionWithTitle:kAddFromcontactsString
+                                            style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * _Nonnull action) {
+                                                [self addFromContacts];
+                                            }];
     
-    UIAlertAction *manualAction = [UIAlertAction
-                                   actionWithTitle:kAddManuallyString
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * _Nonnull action) {
-                                       [self addManually];
-                                   }];
+    UIAlertAction *manualAddAction = [UIAlertAction
+                                      actionWithTitle:kAddManuallyString
+                                      style:UIAlertActionStyleDefault
+                                      handler:^(UIAlertAction * _Nonnull action) {
+                                          [self addManually];
+                                      }];
     
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:kCancelString
                                    style:UIAlertActionStyleCancel
                                    handler:nil];
     
-    [alertController addAction:contactsAction];
-    [alertController addAction:manualAction];
+    [alertController addAction:addFromContactsAction];
+    [alertController addAction:manualAddAction];
     [alertController addAction:cancelAction];
     
     // Handling presentation for iPads
     [alertController setModalPresentationStyle:UIModalPresentationPopover];
     alertController.popoverPresentationController.barButtonItem = sender;
-    [self presentViewController:alertController animated:YES completion:nil];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 
@@ -164,6 +170,8 @@
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.borderStyle = UITextBorderStyleNone;
         
+        // Notification to handle changes for input text
+        // Need to be present in order to allow check of user input text
         [[NSNotificationCenter defaultCenter] addObserver:weakSelf
                                                  selector:@selector(handleTextFieldTextDidChangeNotification:)
                                                      name:UITextFieldTextDidChangeNotification
@@ -191,7 +199,9 @@
     [self.addManuallyAlertController addAction:addAction];
     [self.addManuallyAlertController addAction:cancelAction];
     
-    [self presentViewController:self.addManuallyAlertController animated:YES completion:nil];
+    [self presentViewController:self.addManuallyAlertController
+                       animated:YES
+                     completion:nil];
 }
 
 
@@ -207,7 +217,9 @@
                                    handler:nil];
     
     [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 
@@ -224,7 +236,9 @@
     // In order to enable selection of contact only if one email address is present
     contactPicker.predicateForSelectionOfContact = [NSPredicate predicateWithFormat:@"emailAddresses.@count == 1"];
     
-    [self presentViewController:contactPicker animated:YES completion:nil];
+    [self presentViewController:contactPicker
+                       animated:YES
+                     completion:nil];
 }
 
 
@@ -236,6 +250,7 @@
     
     BOOL isElementAdded = [self.datasourceLevel addItem:newEmailElement];
     if (isElementAdded) {
+        // Assume only one section is present
         NSIndexPath *indexPathToInsert = [NSIndexPath
                                           indexPathForRow:self.datasourceLevel.dataArray.count - 1
                                           inSection:0];
@@ -249,15 +264,20 @@
 
 - (void)markAllCells {
     [self.selfNavigableTableViewProxy markAllCellsForLevel:self.datasourceLevel];
+    // For every model change need to update title for button
     self.checkAllButton.title = [self.datasourceLevel getTitleForCheckInOut];
 }
+
 
 #pragma mark - <SKContactPickerDelegate>
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    NSString *propertyID = [contact.emailAddresses firstObject].identifier;
+    CNLabeledValue<NSString *> *contactEmailValue = [contact.emailAddresses firstObject];
+    self.contactPickerUserInputString = contactEmailValue.value;
+    
+    // Storing email ID for further comparison if it's present
+    NSString *propertyID = contactEmailValue.identifier;
     [self.emailIDs addObject:propertyID];
-    self.contactPickerUserInputString = [contact.emailAddresses firstObject].value;
 }
 
 
@@ -269,6 +289,7 @@
 
 
 - (void)contactPicker:(SKContactPickerViewController *)picker viewDidDisappear:(BOOL)animated {
+    // Handling user input string from Contacts UI
     if (self.contactPickerUserInputString) {
         [self tableAddItem:self.contactPickerUserInputString];
         self.contactPickerUserInputString = nil;
@@ -276,19 +297,20 @@
 }
 
 
-#pragma mark - Notifications
+#pragma mark - Notifications for textField
 
 - (void)removeTextFieldObserver {
     [NSNotificationCenter.defaultCenter
      removeObserver:self
      name:UITextFieldTextDidChangeNotification
-     object:self.self.addManuallyAlertController.textFields[0]];
+     object:self.addManuallyAlertController.textFields[0]];
 }
 
 
 - (void)handleTextFieldTextDidChangeNotification:(NSNotification *)notification {
     UITextField *inputField = self.addManuallyAlertController.textFields[0];
     NSString *userInputString = inputField.text;
+    // Enable/Disable Add button
     self.addManuallyAlertController.actions[0].enabled = [userInputString isValidEmail];
 }
 

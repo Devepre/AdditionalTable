@@ -8,13 +8,10 @@
 
 #import "SKContactPickerViewController.h"
 
-@interface SKContactPickerViewController ()
-
-@end
-
 @implementation SKContactPickerViewController
 
 @dynamic delegate;
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

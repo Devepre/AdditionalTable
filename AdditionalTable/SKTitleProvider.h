@@ -11,7 +11,6 @@
 @protocol SKTitleProvider <NSObject>
 
 @required
-
 - (NSString *)title;
 - (NSObject *)dataObject;
 

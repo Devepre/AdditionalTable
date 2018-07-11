@@ -20,7 +20,7 @@
 
 
 - (instancetype)initWithTitle:(NSString *)title
-                         dataArray:(NSMutableArray<SKTableSourceItem *> *)dataArray
+                    dataArray:(NSMutableArray <SKTableSourceItem *> *)dataArray
              addOptionEnabled:(BOOL)addOptionEnabled {
     self = [super init];
     if (self) {
@@ -28,8 +28,8 @@
         _dataArray = dataArray;
         _addOpitonEnabled = addOptionEnabled;
         
-        kLevelCellCheckAll =        @"Check All";
-        kLevelCellCheckNone =       @"Check None";
+        kLevelCellCheckAll =  @"Check All";
+        kLevelCellCheckNone = @"Check None";
     }
 
     return self;
@@ -45,9 +45,8 @@
 - (NSString *)description {
     NSMutableString *mutableString = [[NSMutableString alloc] init];
     for (SKTableSourceItem *object in self.dataArray) {
-        [mutableString appendFormat:@"%@\n", [object description]];
+        [mutableString appendFormat:@"%@\n", object.description];
     }
-//    NSString *result = [NSString stringWithFormat:(@"%@ -> %@"), self.title, self.dataArray];
     NSString *result = [NSString stringWithFormat:(@"%@ ->\n%@"), self.title, mutableString];
 
     return result;
@@ -56,7 +55,7 @@
 
 - (NSUInteger)numberOfCheckedElementsWithTotal:(NSUInteger *)total {
     // There is place for performance improvements
-    // can be computaed only if changes occures
+    // can be computed only if changes occures
     // instead of computating each time
     NSInteger result = 0;
     
@@ -90,6 +89,7 @@
     return result;
 }
 
+
 #pragma mark - Equality
 
 - (BOOL)isEqual:(id)other {
@@ -99,11 +99,12 @@
     if (!other || ![other isKindOfClass:[self class]]) {
         return NO;
     }
-    // Comparting by dataArray and title properties
+    // Comparing by dataArray and title properties
     if ([self.dataArray isEqual:((SKLevel *)other).dataArray] &&
         [self.title isEqual:((SKLevel *)other).title]) {
         return YES;
     }
+    
     return NO;
 }
 
@@ -149,7 +150,6 @@
 
 - (NSString *)getTitleForCheckInOut {
     NSString *result = [self isAnyCheckedIn] ? kLevelCellCheckNone : kLevelCellCheckAll;
-    
     return result;
 }
 

@@ -12,13 +12,15 @@
 #import "SKElement.h"
 
 @interface SKSelfNavigableTableViewProxy () {
+    NSString *kStoryboardName;
+    NSString *kSelfViewControllerIdentifier;
     NSString *kLevelCellNibName;
     NSString *kElementCellNibName;
     NSString *kLevelCellIdentifier;
     NSString *kElementCellIdentifier;
 }
 
-@property (weak, nonatomic) UITableView *tableView;
+@property (weak, nonatomic) UITableView                      *tableView;
 @property (weak, nonatomic) id <SKLevelTableViewCellDelegate> delegate;
 
 @end
@@ -27,27 +29,28 @@
 
 
 - (instancetype)initWithDatasource:(SKLevel *)datasourceLevel
-                      forTableView:(UITableView *)tableView {
+                      forTableView:(UITableView *)tableView
+                    storybaordname:(NSString *)storyboardName
+      selfViewControllerIdentifier:(NSString *)selfViewControllerIdentifier {
     self = [super init];
     if (self) {
         _datasourceLevel = datasourceLevel;
         _tableView = tableView;
+        kStoryboardName = storyboardName;
+        kSelfViewControllerIdentifier = selfViewControllerIdentifier;
         [self initDefaults];
     }
+    
     return self;
 }
 
 
 - (void)initDefaults {
-    NSLog(@"%s", __func__);
-    
     // TODO Can be moved to instance variables in order to be initialized only once
-    kLevelCellIdentifier =      @"LevelCell";
-    kElementCellIdentifier =    @"ElementCell";
-    kLevelCellNibName =         @"SKLevelTableViewCell";
-    kElementCellNibName =       @"SKElementTableViewCell";
-    
-    NSLog(@"%@", self.datasourceLevel);
+    kLevelCellIdentifier =           @"LevelCell";
+    kElementCellIdentifier =         @"ElementCell";
+    kLevelCellNibName =              @"SKLevelTableViewCell";
+    kElementCellNibName =            @"SKElementTableViewCell";
 }
 
 
@@ -87,17 +90,20 @@
         SKElement *currentElement = (SKElement *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
         cell.accessoryType = currentElement.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else {
-        // Setting delegate in order to receive info from Cell
+        // Setting delegate in order to receive info from Level Cell user action
         cell.delegate = self;
         
         // Setting title for the Button
         [self setTitleForLevelTableViewCellAdditionalButton:cell
                                                 atIndexPath:indexPath];
         
-        // Setting counters
+        // Setting counters of selected/total items
         NSUInteger total = 0;
-        NSUInteger numberOfCheckedElements = [((SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row]) numberOfCheckedElementsWithTotal:&total];
-        NSString *counterString = [NSString stringWithFormat:@"%lu//%lu selected", (unsigned long)numberOfCheckedElements, (unsigned long)total];
+        NSUInteger numberOfCheckedElements = [((SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row])
+                                              numberOfCheckedElementsWithTotal:&total];
+        NSString *counterString = [NSString stringWithFormat:@"%lu//%lu selected",
+                                   (unsigned long)numberOfCheckedElements,
+                                   (unsigned long)total];
         cell.additionalInfoTextLabel.text = counterString;
     }
     
@@ -111,8 +117,6 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __func__);
-    
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
     if ([selectedCell.reuseIdentifier isEqualToString:kLevelCellIdentifier]) {
@@ -131,8 +135,6 @@
 - (void)markSelectedCell:(UITableViewCell *)selectedCell
             forIndexPath:(NSIndexPath * _Nonnull)indexPath
                tableView:(UITableView * _Nonnull)tableView {
-    NSLog(@"%s", __func__);
-    
     BOOL isCellSelected = (selectedCell.accessoryType == UITableViewCellAccessoryCheckmark);
     
     // Handling datasource item
@@ -143,26 +145,29 @@
     selectedCell.accessoryType = isCellSelected ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    // Updating Title for the Navigation button
+    // Updating title for the Navigation button since model was changed - can be optimized
     self.tableViewControllerDelegate.checkAllButton.title = [self.datasourceLevel getTitleForCheckInOut];
 }
 
 
 - (void)pushTableViewForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __func__);
+    UIStoryboard *currentStoryBoard = [UIStoryboard storyboardWithName:kStoryboardName
+                                                                bundle:nil];
+    SKSelfNavigableTableViewController *nextViewController = [currentStoryBoard
+                                                              instantiateViewControllerWithIdentifier:kSelfViewControllerIdentifier];
+    nextViewController.datasourceLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     
-    UIStoryboard *currentStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SKSelfNavigableTableViewController *nextController = [currentStoryBoard instantiateViewControllerWithIdentifier:@"MagicViewController"];
-    nextController.datasourceLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
-    
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *rootViewController = UIApplication.sharedApplication.keyWindow.rootViewController;
     if ([rootViewController isKindOfClass:UINavigationController.class]) {
         UINavigationController *currentNavigationController = (UINavigationController *)rootViewController;
-        [currentNavigationController pushViewController:nextController animated:YES];
+        [currentNavigationController
+         pushViewController:nextViewController
+         animated:YES];
     } else {
-        NSLog(@"Root view controller should be UINavigationController in order to push new VC instance");
+        NSLog(@"%s\nRoot view controller should be UINavigationController in order to push new VC instance", __func__);
     }
 }
+
 
 - (void)markAllCellsForLevel:(SKLevel *)selectedLevel {
     [selectedLevel isAnyCheckedIn] ? [selectedLevel checkOut] : [selectedLevel checkIn];
@@ -191,10 +196,12 @@
     if (!indexPath) {
         indexPath = [self.tableView indexPathForCell:cell];
     }
+    
     SKLevel *selectedLevel = (SKLevel *)[self.datasourceLevel.dataArray objectAtIndex:indexPath.row];
     NSString *buttonNewTitle = [selectedLevel getTitleForCheckInOut];
     [cell.additionalButton setTitle:buttonNewTitle
                            forState:UIControlStateNormal];
 }
+
 
 @end

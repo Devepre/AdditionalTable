@@ -18,12 +18,14 @@
 
 @interface SKSelfNavigableTableViewProxy : NSObject <UITableViewDelegate, UITableViewDataSource, SKTableViewCellsMarkable, SKLevelTableViewCellDelegate>
 
-@property (strong, nonatomic) SKLevel *datasourceLevel;
+@property (strong, nonatomic) SKLevel                          *datasourceLevel;
 @property (weak, nonatomic) SKSelfNavigableTableViewController *tableViewControllerDelegate;
 
-- (instancetype)initWithDatasource:(SKLevel *)datasourceLevel
-                      forTableView:(UITableView *)table NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithDatasource:(SKLevel *)datasourceLevel
+                      forTableView:(UITableView *)tableView
+                    storybaordname:(NSString *)storyboardName
+      selfViewControllerIdentifier:(NSString *)SelfViewControllerIdentifier NS_DESIGNATED_INITIALIZER;
 
 - (void)markAllCellsForLevel:(SKLevel *)currentLevel;
 

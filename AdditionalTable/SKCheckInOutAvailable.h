@@ -11,7 +11,6 @@
 @protocol SKCheckInOutAvailable <NSObject>
 
 @required
-
 - (void)checkIn;
 - (void)checkOut;
 - (BOOL)isAnyCheckedIn;

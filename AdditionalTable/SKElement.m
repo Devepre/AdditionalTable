@@ -32,7 +32,10 @@
 
 
 - (NSString *)description {
-    NSString *result = [NSString stringWithFormat:(@"%@ [%@] -> %@"), self.title, self.dataObject, self.checked ? @"YES" : @"NO"];
+    NSString *result = [NSString stringWithFormat:(@"%@ [%@] -> %@"),
+                        self.title,
+                        self.dataObject,
+                        self.checked ? @"YES" : @"NO"];
     return result;
 }
 
@@ -50,6 +53,7 @@
     if ([self.dataObject isEqual:((SKElement *)other).dataObject]) {
         return YES;
     }
+    
     return NO;
 }
 
@@ -58,6 +62,7 @@
     NSUInteger result = self.dataObject.hash;
     return result;
 }
+
 
 #pragma mark - <CheckInOutAvailable>
 

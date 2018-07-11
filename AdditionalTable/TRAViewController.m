@@ -27,9 +27,10 @@
     [super viewDidLoad];
     
     self.rootLevel = [self createLevelHierarchy];
-    self.selfNavigableTableProxy = [[SKSelfNavigableTableViewProxy alloc]
-                                    initWithDatasource:self.rootLevel
-                                    forTableView:self.tableView];
+    self.selfNavigableTableProxy = [[SKSelfNavigableTableViewProxy alloc]initWithDatasource:self.rootLevel
+                                                                               forTableView:self.tableView
+                                                                             storybaordname:@"Main"
+                                                               selfViewControllerIdentifier:@"MagicViewController"];
     
     self.tableView.delegate = self.selfNavigableTableProxy;
     self.tableView.dataSource = self.selfNavigableTableProxy;
