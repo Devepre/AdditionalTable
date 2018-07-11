@@ -136,6 +136,9 @@
     for (SKTableSourceItem *object in self.dataArray) {
         if ([object isKindOfClass:SKLevel.class]) {
             result = [object isAnyCheckedIn];
+            if (result) {
+                break;
+            }
         } else if ([object isKindOfClass:SKElement.class]) {
             if (((SKElement *)object).checked) {
                 result = YES;
